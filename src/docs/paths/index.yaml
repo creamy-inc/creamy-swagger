@@ -1,2 +1,2 @@
 /user:
-  $ref: ./user/index.yaml
+  $ref: ./user.yaml

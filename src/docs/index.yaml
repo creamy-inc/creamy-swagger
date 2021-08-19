@@ -4,20 +4,18 @@ info:
   $ref: ./info/index.yaml
 
 servers:
-  - url: http://localhost:8080
-    description: Development server
   - url: https://creamy-app.com/api/v1
-    description: Staging server
+    description: Staging Server
+  - url: http://localhost:8080
+    description: Development Server
 
 paths:
   $ref: ./paths/index.yaml
 
 components:
   securitySchemes:
-    Bearer:
-      type: http
-      scheme: bearer
-      description: Credentials or access token for API
+    $ref: './security/index.yaml'
 
   schemas:
-    $ref: './paths/user/schema.yaml'
+    AppUser:
+      $ref: './schemas/user.yaml'

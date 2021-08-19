@@ -10,6 +10,4 @@ get:
       content:
         application/json:
           schema:
-            nullable: false
-            allOf:
-              - $ref: '#/components/schemas/AppUser'
+            $ref: '#/components/schemas/AppUser'
