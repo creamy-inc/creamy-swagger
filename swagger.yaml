@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  description: マッチングアプリ「creamy」 バックエンドAPI仕様書
+  version: 1.0.0
+  title: creamy API
+servers:
+  - url: 'https://creamy-app.com/api/v1'
+    description: Staging Server
+  - url: 'http://localhost:8080'
+    description: Development Server
+paths:
+  /user:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - users
+      summary: ユーザー情報取得
+      description: ログインユーザーの情報を取得します
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppUser'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+components:
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      description: Credentials or access token for API
+  schemas:
+    AppUser:
+      type: object
+      properties:
+        userUid:
+          description: ユーザーID
+          type: string
+          example: xWDG67WKXjROfE22eMEOd7rvYU12
+        userName:
+          description: ユーザー名
+          type: string
+          example: テストユーザー
+        email:
+          description: メールアドレス
+          type: string
+          example: testuser@creamy.com
+        imageUrl:
+          description: 画像URL
+          type: string
+          example: ''
+        isActive:
+          description: アクティブかどうか
+          type: boolean
+          example: false
+        statusId:
+          description: ステータスID
+          type: number
+          example: 2
+        statusName:
+          description: ステータス名
+          type: string
+          example: 食事
+        statusUpdated:
+          description: ステータス更新日
+          type: string
+          example: '2021-08-18T17:13:16.501+09:00'
+        statusIcon:
+          description: ステータスアイコン
+          type: number
+          example: 61816
+        latitude:
+          description: 緯度
+          type: number
+          example: 35.38124649867467
+        longitude:
+          description: 経度
+          type: number
+          example: 138.72642646486958
+    Error:
+      type: object
+      properties:
+        status:
+          description: エラーコード
+          type: number
+          example: 401
+        message:
+          description: エラーメッセージ
+          type: string
+          example: Unauthorized
+  responses:
+    '400':
+      description: パラメータが不正
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: 400
+            message: Invalid parameter
+    '401':
+      description: 認証失敗
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: 401
+            message: Unauthorized token.
+    '404':
+      description: データなし
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: 404
+            message: Data is not found.
+    '500':
+      description: サーバーエラー
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: 500
+            message: Server Error.
