@@ -4,16 +4,55 @@ get:
   tags:
     - users
   summary: "ユーザー情報取得"
-  description: "ログインユーザーの情報を取得します"
+  description: "ログインユーザーの情報を取得"
   responses:
     200:
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/AppUser"
-
     401:
       $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
 
+post:
+  security:
+    - Bearer: []
+  tags:
+    - users
+  summary: "ユーザー情報を登録"
+  description: "ログインユーザーの情報を登録"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            userUid:
+              description: ユーザーID
+              type: string
+              example: "xWDG67WKXjROfE22eMEOd7rvYU12"
+            userName:
+              description: ユーザー名
+              type: string
+              example: "テストユーザー"
+            email:
+              description: メールアドレス
+              type: string
+              example: "testuser@creamy.com"
+            imageUrl:
+              description: 画像URL
+              type: string
+              example: ""
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/AppUser"
+    401:
+      $ref: "#/components/responses/401"
     500:
       $ref: "#/components/responses/500"

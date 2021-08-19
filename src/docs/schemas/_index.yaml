@@ -1,5 +1,7 @@
 AppUser:
+  description: ユーザー
   $ref: "./user.yaml"
 
 Error:
+  description: エラー
   $ref: "./error.yaml"
