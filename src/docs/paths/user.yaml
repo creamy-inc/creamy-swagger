@@ -56,3 +56,32 @@ post:
       $ref: "#/components/responses/401"
     500:
       $ref: "#/components/responses/500"
+
+patch:
+  security:
+    - Bearer: []
+  tags:
+    - users
+  summary: "ユーザー情報を更新"
+  description: "ログインユーザーの情報を更新"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            userName:
+              description: ユーザー名
+              type: string
+              example: "テストユーザー"
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/AppUser"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
