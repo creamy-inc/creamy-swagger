@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   title: creamy API
 paths:
-  "/pet/{petId}":
+  '/pet/{petId}':
     get:
       summary: ペット情報API
       description: 指定されたpetIdの情報を返します
@@ -16,7 +16,7 @@ paths:
           type: integer
           format: int64
       responses:
-        "200":
+        '200':
           description: 成功時のレスポンス
           schema:
             type: object

@@ -4,9 +4,10 @@
   "description": "マッチングアプリ「creamy」 バックエンドAPI仕様書",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "yarn gen && react-scripts build",
     "format": "prettier -w \"**/*.{js,ts,jsx,tsx,html,json,yaml}\"",
-    "compile": "swagger-merger -i ./src/docs/index.yaml -o ./public/swagger.yaml"
+    "gen": "swagger-merger -i ./src/docs/index.yaml -o ./public/swagger.yaml",
+    "watch": "node ./src/watcher.js"
   },
   "author": "Alesion30",
   "license": "ISC",
@@ -19,6 +20,8 @@
   "devDependencies": {
     "@types/react-dom": "^17.0.9",
     "@types/swagger-ui-react": "^3.35.2",
+    "child_process": "^1.0.2",
+    "chokidar": "^3.5.2",
     "eslint": "^7.32.0",
     "prettier": "^2.3.2",
     "swagger-merger": "^1.4.3",
