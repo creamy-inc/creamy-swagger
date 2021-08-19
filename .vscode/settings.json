@@ -1,0 +1,12 @@
+{
+  "files.exclude": {
+    ".prettierignore": true,
+    "README.md": true,
+    "tsconfig.json": true,
+    "yarn.lock": true,
+    "package-lock.json": true,
+    ".gitignore": true,
+    "node_modules": true,
+    "src/react-app-env.d.ts": true
+  }
+}
