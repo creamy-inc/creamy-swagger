@@ -1,0 +1,5 @@
+AppUser:
+  $ref: "./user.yaml"
+
+Error:
+  $ref: "./error.yaml"

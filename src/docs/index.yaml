@@ -10,12 +10,14 @@ servers:
     description: Development Server
 
 paths:
-  $ref: ./paths/index.yaml
+  $ref: ./paths/_index.yaml
 
 components:
   securitySchemes:
-    $ref: './security/index.yaml'
+    $ref: "./security/_index.yaml"
 
   schemas:
-    AppUser:
-      $ref: './schemas/user.yaml'
+    $ref: "./schemas/_index.yaml"
+
+  responses:
+    $ref: "./responses/_index.yaml"

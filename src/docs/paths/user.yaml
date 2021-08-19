@@ -10,4 +10,10 @@ get:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/AppUser'
+            $ref: "#/components/schemas/AppUser"
+
+    401:
+      $ref: "#/components/responses/401"
+
+    500:
+      $ref: "#/components/responses/500"

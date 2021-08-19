@@ -1,0 +1,12 @@
+# Error
+type: object
+properties:
+  status:
+    description: エラーコード
+    type: number
+    example: 401
+
+  message:
+    description: エラーメッセージ
+    type: string
+    example: "Unauthorized"

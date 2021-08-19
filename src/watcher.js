@@ -11,6 +11,9 @@ const watcher = chokidar.watch("./src/**/*.yaml", {
 });
 
 watcher.on("change", (path) => {
+  if (path == "public/swagger.yaml") {
+    return;
+  }
   const stdout = execSync("npm run gen");
   console.log(`stdout: ${stdout.toString()}`);
 });

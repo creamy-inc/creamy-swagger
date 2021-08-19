@@ -1,0 +1,40 @@
+# responses
+400:
+  description: パラメータが不正
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"
+      example:
+        status: 400
+        message: Invalid parameter
+
+401:
+  description: 認証失敗
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"
+      example:
+        status: 401
+        message: Unauthorized token.
+
+404:
+  description: データなし
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"
+      example:
+        status: 404
+        message: Data is not found.
+
+500:
+  description: サーバーエラー
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"
+      example:
+        status: 500
+        message: Server Error.
