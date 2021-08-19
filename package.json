@@ -5,7 +5,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "format": "prettier -w \"**/*.{js,ts,jsx,tsx,html,json,yaml}\""
+    "format": "prettier -w \"**/*.{js,ts,jsx,tsx,html,json,yaml}\"",
+    "compile": "swagger-merger -i ./src/docs/index.yaml -o ./public/swagger.yaml"
   },
   "author": "Alesion30",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "@types/swagger-ui-react": "^3.35.2",
     "eslint": "^7.32.0",
     "prettier": "^2.3.2",
+    "swagger-merger": "^1.4.3",
     "typescript": "^4.3.5"
   },
   "browserslist": {
