@@ -14,15 +14,159 @@ paths:
       security:
         - Bearer: []
       tags:
-        - users
+        - user
       summary: ユーザー情報取得
-      description: ログインユーザーの情報を取得します
+      description: ログインユーザーの情報を取得
       responses:
         '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AppUser'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - user
+      summary: ユーザー情報を登録
+      description: ログインユーザーの情報を登録
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userUid:
+                  description: ユーザーID
+                  type: string
+                  example: xWDG67WKXjROfE22eMEOd7rvYU12
+                userName:
+                  description: ユーザー名
+                  type: string
+                  example: テストユーザー
+                email:
+                  description: メールアドレス
+                  type: string
+                  example: testuser@creamy.com
+                imageUrl:
+                  description: 画像URL
+                  type: string
+                  example: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppUser'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - user
+      summary: ユーザー情報を更新
+      description: ログインユーザーの情報を更新
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  description: ユーザー名
+                  type: string
+                  example: テストユーザー
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppUser'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /user/status:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - user
+      summary: ステータスを更新
+      description: ログインユーザーのステータスを更新
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                statusId:
+                  description: ステータスID
+                  type: number
+                  example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /user/friend:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - user
+      summary: フレンド一覧を取得
+      description: ログインユーザーのフレンド一覧を取得
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppUser'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /user/location:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - user
+      summary: 位置情報を更新
+      description: ログインユーザーの位置情報を更新
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                latitude:
+                  description: 緯度
+                  type: number
+                  example: 35.38124649867467
+                longitude:
+                  description: 経度
+                  type: number
+                  example: 138.72642646486958
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -35,6 +179,7 @@ components:
       description: Credentials or access token for API
   schemas:
     AppUser:
+      description: ユーザー
       type: object
       properties:
         userUid:
@@ -82,6 +227,7 @@ components:
           type: number
           example: 138.72642646486958
     Error:
+      description: エラー
       type: object
       properties:
         status:
@@ -93,6 +239,13 @@ components:
           type: string
           example: Unauthorized
   responses:
+    '200':
+      description: 成功
+      content:
+        application/json:
+          example:
+            status: 200
+            message: success
     '400':
       description: パラメータが不正
       content:
@@ -110,7 +263,7 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             status: 401
-            message: Unauthorized token.
+            message: Unauthorized token
     '404':
       description: データなし
       content:
@@ -119,7 +272,7 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             status: 404
-            message: Data is not found.
+            message: Data is not found
     '500':
       description: サーバーエラー
       content:
@@ -128,4 +281,4 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             status: 500
-            message: Server Error.
+            message: Server Error
