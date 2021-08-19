@@ -4,8 +4,8 @@ import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
 
 const App: React.VFC = () => (
-  <div className="App">
-    <SwaggerUI url="https://api.mna.dev.spsapps.net/swagger/?format=openapi" />
+  <div>
+    <SwaggerUI url="swagger.yaml" />
   </div>
 );
 

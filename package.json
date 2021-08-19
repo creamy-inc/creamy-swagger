@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "format": "prettier -w \"**/*.{js,ts,jsx,tsx,html,json}\""
+    "format": "prettier -w \"**/*.{js,ts,jsx,tsx,html,json,yaml}\""
   },
   "author": "Alesion30",
   "license": "ISC",
