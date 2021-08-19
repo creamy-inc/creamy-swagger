@@ -8,6 +8,9 @@ servers:
     description: Staging Server
   - url: 'http://localhost:8080'
     description: Development Server
+tags:
+  - name: user
+    description: Operations about user
 paths:
   /user:
     get:
