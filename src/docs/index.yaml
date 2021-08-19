@@ -1,7 +1,9 @@
 openapi: "3.0.0"
 
 info:
-  $ref: "./info/index.yaml"
+  description: "マッチングアプリ「creamy」 バックエンドAPI仕様書"
+  version: "1.0.0"
+  title: "creamy API"
 
 servers:
   - url: https://creamy-app.com/api/v1
@@ -18,7 +20,10 @@ paths:
 
 components:
   securitySchemes:
-    $ref: "./security/_index.yaml"
+    Bearer:
+      type: http
+      scheme: bearer
+      description: Credentials or access token for API
 
   schemas:
     $ref: "./schemas/_index.yaml"
