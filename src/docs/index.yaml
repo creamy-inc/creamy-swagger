@@ -3,5 +3,21 @@ openapi: "3.0.0"
 info:
   $ref: ./info/index.yaml
 
+servers:
+  - url: http://localhost:8080
+    description: Development server
+  - url: https://creamy-app.com/api/v1
+    description: Staging server
+
 paths:
   $ref: ./paths/index.yaml
+
+components:
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      description: Credentials or access token for API
+
+  schemas:
+    $ref: './paths/user/schema.yaml'

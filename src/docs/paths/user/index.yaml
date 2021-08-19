@@ -1,0 +1,15 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - users
+  summary: "ユーザー情報取得"
+  description: "ログインユーザーの情報を取得します"
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            nullable: false
+            allOf:
+              - $ref: '#/components/schemas/AppUser'

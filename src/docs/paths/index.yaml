@@ -1,2 +1,2 @@
-/pet/{petId}:
-  $ref: ./pet.yaml
+/user:
+  $ref: ./user/index.yaml
