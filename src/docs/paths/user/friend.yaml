@@ -1,0 +1,19 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - user
+  summary: "フレンド一覧を取得"
+  description: "ログインユーザーのフレンド一覧を取得"
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/AppUser"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

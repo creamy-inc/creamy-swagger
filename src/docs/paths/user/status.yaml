@@ -1,0 +1,25 @@
+post:
+  security:
+    - Bearer: []
+  tags:
+    - user
+  summary: "ステータスを更新"
+  description: "ログインユーザーのステータスを更新"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            statusId:
+              description: ステータスID
+              type: number
+              example: 1
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

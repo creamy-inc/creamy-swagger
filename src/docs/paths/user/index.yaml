@@ -2,7 +2,7 @@ get:
   security:
     - Bearer: []
   tags:
-    - users
+    - user
   summary: "ユーザー情報取得"
   description: "ログインユーザーの情報を取得"
   responses:
@@ -20,7 +20,7 @@ post:
   security:
     - Bearer: []
   tags:
-    - users
+    - user
   summary: "ユーザー情報を登録"
   description: "ログインユーザーの情報を登録"
   requestBody:
@@ -61,7 +61,7 @@ patch:
   security:
     - Bearer: []
   tags:
-    - users
+    - user
   summary: "ユーザー情報を更新"
   description: "ログインユーザーの情報を更新"
   requestBody:

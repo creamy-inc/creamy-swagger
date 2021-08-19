@@ -1,4 +1,12 @@
 # responses
+200:
+  description: 成功
+  content:
+    application/json:
+      example:
+        status: 200
+        message: success
+
 400:
   description: パラメータが不正
   content:
@@ -17,7 +25,7 @@
         $ref: "#/components/schemas/Error"
       example:
         status: 401
-        message: Unauthorized token.
+        message: Unauthorized token
 
 404:
   description: データなし
@@ -27,7 +35,7 @@
         $ref: "#/components/schemas/Error"
       example:
         status: 404
-        message: Data is not found.
+        message: Data is not found
 
 500:
   description: サーバーエラー
@@ -37,4 +45,4 @@
         $ref: "#/components/schemas/Error"
       example:
         status: 500
-        message: Server Error.
+        message: Server Error

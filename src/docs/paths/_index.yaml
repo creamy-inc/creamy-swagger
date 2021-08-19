@@ -1,2 +1,11 @@
 /user:
-  $ref: ./user.yaml
+  $ref: "./user/index.yaml"
+
+/user/status:
+  $ref: "./user/status.yaml"
+
+/user/friend:
+  $ref: "./user/friend.yaml"
+
+/user/location:
+  $ref: "./user/location.yaml"
