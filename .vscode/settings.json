@@ -9,6 +9,6 @@
     "node_modules": true,
     "src/react-app-env.d.ts": true,
     ".github": true,
-    "build": true,
+    "build": true
   }
 }
