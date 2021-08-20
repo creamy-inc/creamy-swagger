@@ -8,15 +8,15 @@ properties:
   roomName:
     description: ルーム名
     type: string
-    example: "焼肉の会"
+    example: "暇な人集まれ！"
   roomRange:
-    description: ルーム公開範囲（1:公開, 2:招待性）
+    description: ルーム公開範囲（0:公開, 1:招待性）
     type: number
-    example: 1
+    example: 0
   roomMember:
     description: ルームの人数
     type: number
-    example: 1
+    example: 4
   ownerUid:
     description: オーナーID
     type: string

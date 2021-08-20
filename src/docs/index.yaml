@@ -16,6 +16,8 @@ tags:
     description: "Operations about user"
   - name: "master"
     description: "Operations about master"
+  - name: "room"
+    description: "Operations about room"
 
 paths:
   $ref: "./paths/index.yaml"

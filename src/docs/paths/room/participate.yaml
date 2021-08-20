@@ -1,0 +1,19 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - room
+  summary: "招待ルーム一覧を取得"
+  description: "ユーザーが招待されているルーム一覧を取得する"
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Room"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

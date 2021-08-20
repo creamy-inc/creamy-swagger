@@ -1,0 +1,59 @@
+post:
+  security:
+    - Bearer: []
+  tags:
+    - room
+  summary: "ファボする"
+  description: "おすすめの場所に対してファボする"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            roomId:
+              description: ルームID
+              type: number
+              example: 1
+            placeId:
+              description: 場所ID
+              type: number
+              example: 1
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+delete:
+  security:
+    - Bearer: []
+  tags:
+    - room
+  summary: "ファボ解除"
+  description: "おすすめの場所に対するファボを解除する"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            roomId:
+              description: ルームID
+              type: number
+              example: 1
+            placeId:
+              description: 場所ID
+              type: number
+              example: 1
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
