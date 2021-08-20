@@ -13,6 +13,8 @@ tags:
     description: Operations about user
   - name: master
     description: Operations about master
+  - name: room
+    description: Operations about room
 paths:
   /user:
     get:
@@ -192,6 +194,217 @@ paths:
                   $ref: '#/components/schemas/Status'
         '500':
           $ref: '#/components/responses/500'
+  /room:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - room
+      summary: ルーム一覧を取得
+      description: ユーザーが所属するルーム一覧を取得する
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Room'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /room/participate:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - room
+      summary: 招待ルーム一覧を取得
+      description: ユーザーが招待されているルーム一覧を取得する
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Room'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /room/message:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - room
+      summary: メッセージ取得
+      description: ユーザーが所属するルーム上のメッセージ一覧を取得する
+      parameters:
+        - name: roomId
+          in: query
+          description: ルームID
+          required: true
+          type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - room
+      summary: メッセージ送信
+      description: ユーザーが所属するルーム上にメッセージを送信する
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roomId:
+                  description: ルームID
+                  type: number
+                  example: 1
+                message:
+                  description: メッセージの内容
+                  type: string
+                  example: こんにちは！
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /room/user:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - room
+      summary: ユーザー一覧を取得
+      description: ルーム内のユーザー一覧を取得する
+      parameters:
+        - name: roomId
+          in: query
+          description: ルームID
+          required: true
+          type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppUser'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /place:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - room
+      summary: おすすめの場所一覧を取得する
+      description: ルームの参加メンバー情報をもとにおすすめの場所一覧を取得する
+      parameters:
+        - name: roomId
+          in: query
+          description: ルームID
+          required: true
+          type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Place'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /place/favo:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - room
+      summary: ファボする
+      description: おすすめの場所に対してファボする
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roomId:
+                  description: ルームID
+                  type: number
+                  example: 1
+                placeId:
+                  description: 場所ID
+                  type: number
+                  example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - room
+      summary: ファボ解除
+      description: おすすめの場所に対するファボを解除する
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roomId:
+                  description: ルームID
+                  type: number
+                  example: 1
+                placeId:
+                  description: 場所ID
+                  type: number
+                  example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
 components:
   securitySchemes:
     Bearer:
@@ -263,6 +476,102 @@ components:
           description: ステータスアイコン
           type: number
           example: 61816
+    Room:
+      description: ルーム
+      type: object
+      properties:
+        roomId:
+          description: ルームID
+          type: number
+          example: 1
+        roomName:
+          description: ルーム名
+          type: string
+          example: 暇な人集まれ！
+        roomRange:
+          description: 'ルーム公開範囲（0:公開, 1:招待性）'
+          type: number
+          example: 0
+        roomMember:
+          description: ルームの人数
+          type: number
+          example: 4
+        ownerUid:
+          description: オーナーID
+          type: string
+          example: xWDG67WKXjROfE22eMEOd7rvYU12
+        isOwner:
+          description: オーナーかどうか
+          type: boolean
+          example: true
+    Message:
+      description: メッセージ
+      type: object
+      properties:
+        message:
+          description: メッセージ内容
+          type: string
+          example: こんにちは！
+        time:
+          description: 登録日
+          type: string
+          example: '2021-08-18T17:13:16.501+09:00'
+        user:
+          description: ユーザー情報
+          $ref: '#/components/schemas/AppUser'
+    Place:
+      description: 場所
+      type: object
+      properties:
+        placeId:
+          description: 場所ID
+          type: number
+          example: 1
+        placeName:
+          description: 場所名
+          type: string
+          example: ''
+        address:
+          description: 住所
+          type: string
+          example: ''
+        latitude:
+          description: 緯度
+          type: number
+          example: 1
+        longitude:
+          description: 経度
+          type: number
+          example: 1
+        rate:
+          description: 評価
+          type: number
+          example: 1
+        price:
+          description: 価格帯
+          type: number
+          example: 1
+        statusId:
+          description: ステータスID
+          type: number
+          example: 1
+        statusName:
+          description: ステータス名
+          type: string
+          example: ''
+        statusIcon:
+          description: ステータスアイコン
+          type: number
+          example: 1
+        isFavo:
+          description: ファボしているかどうか
+          type: boolean
+          example: false
+        favoUsers:
+          description: ファボしているユーザー
+          type: array
+          items:
+            $ref: '#/components/schemas/AppUser'
     Error:
       description: エラー
       type: object
