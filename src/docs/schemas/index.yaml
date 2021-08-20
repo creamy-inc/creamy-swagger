@@ -6,6 +6,18 @@ Status:
   description: ステータス
   $ref: "./status.yaml"
 
+Room:
+  description: ルーム
+  $ref: "./room.yaml"
+
+Message:
+  description: メッセージ
+  $ref: "./message.yaml"
+
+Place:
+  description: 場所
+  $ref: "./place.yaml"
+
 Error:
   description: エラー
   $ref: "./error.yaml"

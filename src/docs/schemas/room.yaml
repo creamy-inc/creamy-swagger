@@ -1,0 +1,27 @@
+# Room
+type: object
+properties:
+  roomId:
+    description: ルームID
+    type: number
+    example: 1
+  roomName:
+    description: ルーム名
+    type: string
+    example: "焼肉の会"
+  roomRange:
+    description: ルーム公開範囲（1:公開, 2:招待性）
+    type: number
+    example: 1
+  roomMember:
+    description: ルームの人数
+    type: number
+    example: 1
+  ownerUid:
+    description: オーナーID
+    type: string
+    example: "xWDG67WKXjROfE22eMEOd7rvYU12"
+  isOwner:
+    description: オーナーかどうか
+    type: boolean
+    example: true

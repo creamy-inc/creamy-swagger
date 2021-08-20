@@ -1,0 +1,14 @@
+# Message
+type: object
+properties:
+  message:
+    description: メッセージ内容
+    type: string
+    example: "こんにちは！"
+  time:
+    description: 登録日
+    type: string
+    example: "2021-08-18T17:13:16.501+09:00"
+  user:
+    description: ユーザー情報
+    $ref: "#/components/schemas/AppUser"

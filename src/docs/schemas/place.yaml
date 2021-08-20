@@ -1,0 +1,52 @@
+# 場所
+type: object
+properties:
+  placeId:
+    description: 場所ID
+    type: number
+    example: 1
+  placeName:
+    description: 場所名
+    type: string
+    example: ""
+  address:
+    description: 住所
+    type: string
+    example: ""
+  latitude:
+    description: 緯度
+    type: number
+    example: 1
+  longitude:
+    description: 経度
+    type: number
+    example: 1
+  rate:
+    description: 評価
+    type: number
+    example: 1
+  price:
+    description: 価格帯
+    type: number
+    example: 1
+  statusId:
+    description: ステータスID
+    type: number
+    example: 1
+  statusName:
+    description: ステータス名
+    type: string
+    example: ""
+  statusIcon:
+    description: ステータスアイコン
+    type: number
+    example: 1
+  isFavo:
+    description: ファボしているかどうか
+    type: boolean
+    example: false
+  favoUsers:
+    description: ファボしているユーザー
+    type: array
+    items:
+      $ref: "#/components/schemas/AppUser"
