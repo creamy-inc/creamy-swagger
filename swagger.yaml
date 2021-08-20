@@ -11,6 +11,8 @@ servers:
 tags:
   - name: user
     description: Operations about user
+  - name: master
+    description: Operations about master
 paths:
   /user:
     get:
@@ -174,6 +176,22 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+  /status:
+    get:
+      tags:
+        - master
+      summary: ステータス一覧を取得
+      description: ステータス一覧を取得します
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Status'
+        '500':
+          $ref: '#/components/responses/500'
 components:
   securitySchemes:
     Bearer:
@@ -229,6 +247,22 @@ components:
           description: 経度
           type: number
           example: 138.72642646486958
+    Status:
+      description: ステータス
+      type: object
+      properties:
+        id:
+          description: ステータスID
+          type: number
+          example: 2
+        statusName:
+          description: ステータス名
+          type: string
+          example: 食事
+        statusIcon:
+          description: ステータスアイコン
+          type: number
+          example: 61816
     Error:
       description: エラー
       type: object
