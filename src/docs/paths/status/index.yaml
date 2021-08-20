@@ -1,0 +1,15 @@
+get:
+  tags:
+    - master
+  summary: "ステータス一覧を取得"
+  description: "ステータス一覧を取得します"
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Status"
+    500:
+      $ref: "#/components/responses/500"

@@ -14,9 +14,11 @@ servers:
 tags:
   - name: "user"
     description: "Operations about user"
+  - name: "master"
+    description: "Operations about master"
 
 paths:
-  $ref: "./paths/_index.yaml"
+  $ref: "./paths/index.yaml"
 
 components:
   securitySchemes:
@@ -26,7 +28,7 @@ components:
       description: Credentials or access token for API
 
   schemas:
-    $ref: "./schemas/_index.yaml"
+    $ref: "./schemas/index.yaml"
 
   responses:
-    $ref: "./responses/_index.yaml"
+    $ref: "./responses/index.yaml"

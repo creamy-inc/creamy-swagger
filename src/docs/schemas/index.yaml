@@ -2,6 +2,10 @@ AppUser:
   description: ユーザー
   $ref: "./user.yaml"
 
+Status:
+  description: ステータス
+  $ref: "./status.yaml"
+
 Error:
   description: エラー
   $ref: "./error.yaml"

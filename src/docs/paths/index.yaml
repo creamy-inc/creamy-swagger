@@ -9,3 +9,6 @@
 
 /user/location:
   $ref: "./user/location.yaml"
+
+/status:
+  $ref: "./status/index.yaml"
