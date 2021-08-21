@@ -19,6 +19,8 @@ get:
             type: array
             items:
               $ref: "#/components/schemas/Message"
+    400:
+      $ref: "#/components/responses/400"
     401:
       $ref: "#/components/responses/401"
     500:
@@ -54,6 +56,8 @@ post:
             type: array
             items:
               $ref: "#/components/schemas/Message"
+    400:
+      $ref: "#/components/responses/400"
     401:
       $ref: "#/components/responses/401"
     500:

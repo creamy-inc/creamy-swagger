@@ -13,6 +13,8 @@ get:
             type: array
             items:
               $ref: "#/components/schemas/AppUser"
+    400:
+      $ref: "#/components/responses/400"
     401:
       $ref: "#/components/responses/401"
     500:

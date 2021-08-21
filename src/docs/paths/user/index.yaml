@@ -11,6 +11,8 @@ get:
         application/json:
           schema:
             $ref: "#/components/schemas/AppUser"
+    400:
+      $ref: "#/components/responses/400"
     401:
       $ref: "#/components/responses/401"
     500:
@@ -52,6 +54,8 @@ post:
         application/json:
           schema:
             $ref: "#/components/schemas/AppUser"
+    400:
+      $ref: "#/components/responses/400"
     401:
       $ref: "#/components/responses/401"
     500:
@@ -71,16 +75,47 @@ patch:
         schema:
           type: object
           properties:
+            userUid:
+              description: ユーザーID
+              type: string
+              example: "xWDG67WKXjROfE22eMEOd7rvYU12"
             userName:
               description: ユーザー名
               type: string
               example: "テストユーザー"
+            email:
+              description: メールアドレス
+              type: string
+              example: "testuser@creamy.com"
+            imageUrl:
+              description: 画像URL
+              type: string
+              example: ""
   responses:
     200:
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/AppUser"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+delete:
+  security:
+    - Bearer: []
+  tags:
+    - user
+  summary: ユーザを削除
+  description: ログインユーザをデータベースから削除
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
     401:
       $ref: "#/components/responses/401"
     500:
