@@ -30,6 +30,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AppUser'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -70,6 +72,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AppUser'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -88,16 +92,46 @@ paths:
             schema:
               type: object
               properties:
+                userUid:
+                  description: ユーザーID
+                  type: string
+                  example: xWDG67WKXjROfE22eMEOd7rvYU12
                 userName:
                   description: ユーザー名
                   type: string
                   example: テストユーザー
+                email:
+                  description: メールアドレス
+                  type: string
+                  example: testuser@creamy.com
+                imageUrl:
+                  description: 画像URL
+                  type: string
+                  example: ''
       responses:
         '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AppUser'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - user
+      summary: ユーザを削除
+      description: ログインユーザをデータベースから削除
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -124,6 +158,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -144,6 +180,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AppUser'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -174,6 +212,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -192,6 +232,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Status'
+        '400':
+          $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
   /room:
@@ -210,6 +252,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Room'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -230,6 +274,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Room'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -256,6 +302,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Message'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -290,6 +338,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Message'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -316,6 +366,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AppUser'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -342,6 +394,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Place'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -372,6 +426,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -401,6 +457,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '500':
@@ -604,7 +662,7 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             status: 400
-            message: Invalid parameter
+            message: Bad Request
     '401':
       description: 認証失敗
       content:
