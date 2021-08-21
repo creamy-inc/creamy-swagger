@@ -55,3 +55,8 @@ properties:
     description: 経度
     type: number
     example: 138.72642646486958
+
+  distance:
+    description: ユーザとの距離(-1 = 自分自身 or 位置情報未取得, 0 = 0~1km, 1 = km~5km, 2 = 5km~)
+    type: number
+    example: 0
