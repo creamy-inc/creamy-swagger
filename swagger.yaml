@@ -136,6 +136,34 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+  /user/search:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - user
+      summary: ユーザー検索
+      description: ユーザー検索
+      parameters:
+        - name: userName
+          in: query
+          description: ユーザー名
+          required: true
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppUser'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
   /user/status:
     post:
       security:
@@ -219,6 +247,24 @@ paths:
         '500':
           $ref: '#/components/responses/500'
   /status:
+    get:
+      tags:
+        - master
+      summary: ステータス一覧を取得
+      description: ステータス一覧を取得します
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Status'
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  /answer:
     get:
       tags:
         - master
@@ -463,6 +509,227 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+  /schedule:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - schedule
+      summary: スケジュールのアンケート一覧を取得
+      description: ルームのスケジュールに関するアンケート一覧を取得
+      parameters:
+        - name: roomId
+          in: query
+          description: ルームID
+          required: true
+          type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    scheduleQuestionnaireId:
+                      description: アンケートID
+                      type: number
+                      example: 1
+                    title:
+                      description: タイトル
+                      type: string
+                      example: 食事会
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - schedule
+      summary: スケジュールのアンケートを新規作成
+      description: ルームのスケジュールのアンケートを新規作成
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roomId:
+                  description: ルームID
+                  type: number
+                  example: 1
+                title:
+                  description: アンケート名
+                  type: string
+                  example: BBQ
+                date:
+                  description: 候補日
+                  type: array
+                  items:
+                    type: string
+                    example: '2021-08-22T18:00:00+09:00'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - schedule
+      summary: スケジュールのアンケートを削除
+      description: ルームのスケジュールのアンケートを削除
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scheduleQuestionnaireId:
+                  description: アンケートID
+                  type: number
+                  example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /schedule/candidate:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - schedule
+      summary: スケジュールのアンケートに候補日を追加
+      description: ルームのスケジュールのアンケートに候補日を追加
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scheduleQuestionnaireId:
+                  description: アンケートID
+                  type: number
+                  example: 1
+                date:
+                  description: 候補日
+                  type: string
+                  example: '2021-08-22T18:00:00+09:00'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - schedule
+      summary: スケジュールのアンケートに候補日を削除
+      description: ルームのスケジュールのアンケートに候補日を削除
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                candidateDateId:
+                  description: 候補日ID
+                  type: number
+                  example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /schedule/answer:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - schedule
+      summary: スケジュールのアンケート候補と回答を取得
+      description: ルームのスケジュールのアンケート候補とユーザーの回答を取得
+      parameters:
+        - name: scheduleQuestionnaireId
+          in: query
+          description: アンケートID
+          required: true
+          type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Schedule'
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - schedule
+      summary: スケジュールのアンケートに回答する
+      description: ルームのスケジュールのアンケートに回答する
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roomId:
+                  description: ルームID
+                  type: number
+                  example: 1
+                candidateDateId:
+                  description: 候補日ID
+                  type: number
+                  example: 1
+                answerId:
+                  description: 回答ID
+                  type: number
+                  example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
 components:
   securitySchemes:
     Bearer:
@@ -634,6 +901,57 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AppUser'
+    Answer:
+      description: 回答
+      type: object
+      properties:
+        id:
+          description: 回答ID
+          type: number
+          example: 1
+        answerName:
+          description: 回答
+          type: string
+          example: 賛成
+        answerIcon:
+          description: 回答アイコン
+          type: number
+          example: 58478
+    Schedule:
+      description: スケジュール
+      type: object
+      properties:
+        candidateDateId:
+          description: ID
+          type: number
+          example: 1
+        date:
+          description: 候補日
+          type: string
+          example: '2021-08-12T18:00:00+09:00'
+        answers:
+          description: 回答
+          type: array
+          items:
+            type: object
+            properties:
+              answerId:
+                description: ID
+                type: number
+                example: 1
+              answerName:
+                description: 回答
+                type: string
+                example: 賛成
+              answerIcon:
+                description: 回答アイコン
+                type: number
+                example: 58478
+              user:
+                description: 回答しているユーザー
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppUser'
     Error:
       description: エラー
       type: object
