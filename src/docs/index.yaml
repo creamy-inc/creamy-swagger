@@ -18,6 +18,8 @@ tags:
     description: "Operations about master"
   - name: "room"
     description: "Operations about room"
+  - name: "schedule"
+    description: "Operations about schedule"
 
 paths:
   $ref: "./paths/index.yaml"
