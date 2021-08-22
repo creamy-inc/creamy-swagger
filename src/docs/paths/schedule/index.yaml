@@ -1,0 +1,102 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - schedule
+  summary: "スケジュールのアンケート一覧を取得"
+  description: "ルームのスケジュールに関するアンケート一覧を取得"
+  parameters:
+    - name: "roomId"
+      in: query
+      description: "ルームID"
+      required: true
+      type: number
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                scheduleQuestionnaireId:
+                  description: アンケートID
+                  type: number
+                  example: 1
+                title:
+                  description: タイトル
+                  type: string
+                  example: "食事会"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+post:
+  security:
+    - Bearer: []
+  tags:
+    - schedule
+  summary: "スケジュールのアンケートを新規作成"
+  description: "ルームのスケジュールのアンケートを新規作成"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            roomId:
+              description: ルームID
+              type: number
+              example: 1
+            title:
+              description: アンケート名
+              type: string
+              example: "BBQ"
+            date:
+              description: 候補日
+              type: array
+              items:
+                type: string
+                example: "2021-08-22T18:00:00+09:00"
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+delete:
+  security:
+    - Bearer: []
+  tags:
+    - schedule
+  summary: "スケジュールのアンケートを削除"
+  description: "ルームのスケジュールのアンケートを削除"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            scheduleQuestionnaireId:
+              description: アンケートID
+              type: number
+              example: 1
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

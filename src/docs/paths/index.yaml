@@ -2,6 +2,9 @@
 /user:
   $ref: "./user/index.yaml"
 
+/user/search:
+  $ref: "./user/search.yaml"
+
 /user/status:
   $ref: "./user/status.yaml"
 
@@ -14,6 +17,9 @@
 # master マスター
 /status:
   $ref: "./master/status.yaml"
+
+/answer:
+  $ref: "./master/answer.yaml"
 
 # room ルーム
 /room:
@@ -33,3 +39,13 @@
 
 /place/favo:
   $ref: "./room/favo.yaml"
+
+# schedule
+/schedule:
+  $ref: "./schedule/index.yaml"
+
+/schedule/candidate:
+  $ref: "./schedule/candidate.yaml"
+
+/schedule/answer:
+  $ref: "./schedule/answer.yaml"

@@ -1,0 +1,34 @@
+# Schedule
+type: object
+properties:
+  candidateDateId:
+    description: ID
+    type: number
+    example: 1
+  date:
+    description: 候補日
+    type: string
+    example: "2021-08-12T18:00:00+09:00"
+  answers:
+    description: 回答
+    type: array
+    items:
+      type: object
+      properties:
+        answerId:
+          description: ID
+          type: number
+          example: 1
+        answerName:
+          description: 回答
+          type: string
+          example: "賛成"
+        answerIcon:
+          description: 回答アイコン
+          type: number
+          example: 58478
+        user:
+          description: 回答しているユーザー
+          type: array
+          items:
+            $ref: "#/components/schemas/AppUser"

@@ -1,0 +1,61 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - schedule
+  summary: "スケジュールのアンケート候補と回答を取得"
+  description: "ルームのスケジュールのアンケート候補とユーザーの回答を取得"
+  parameters:
+    - name: "scheduleQuestionnaireId"
+      in: query
+      description: "アンケートID"
+      required: true
+      type: number
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Schedule"
+    400:
+      $ref: "#/components/responses/400"
+    500:
+      $ref: "#/components/responses/500"
+
+post:
+  security:
+    - Bearer: []
+  tags:
+    - schedule
+  summary: "スケジュールのアンケートに回答する"
+  description: "ルームのスケジュールのアンケートに回答する"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            roomId:
+              description: ルームID
+              type: number
+              example: 1
+            candidateDateId:
+              description: 候補日ID
+              type: number
+              example: 1
+            answerId:
+              description: 回答ID
+              type: number
+              example: 1
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

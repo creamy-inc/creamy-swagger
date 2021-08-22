@@ -18,6 +18,14 @@ Place:
   description: 場所
   $ref: "./place.yaml"
 
+Answer:
+  description: 回答
+  $ref: "./answer.yaml"
+
+Schedule:
+  description: スケジュール
+  $ref: "./schedule.yaml"
+
 Error:
   description: エラー
   $ref: "./error.yaml"

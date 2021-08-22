@@ -1,0 +1,15 @@
+# Answer
+type: object
+properties:
+  id:
+    description: 回答ID
+    type: number
+    example: 1
+  answerName:
+    description: 回答
+    type: string
+    example: "賛成"
+  answerIcon:
+    description: 回答アイコン
+    type: number
+    example: 58478

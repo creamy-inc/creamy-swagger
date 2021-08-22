@@ -1,0 +1,59 @@
+post:
+  security:
+    - Bearer: []
+  tags:
+    - schedule
+  summary: "スケジュールのアンケートに候補日を追加"
+  description: "ルームのスケジュールのアンケートに候補日を追加"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            scheduleQuestionnaireId:
+              description: アンケートID
+              type: number
+              example: 1
+            date:
+              description: 候補日
+              type: string
+              example: "2021-08-22T18:00:00+09:00"
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+delete:
+  security:
+    - Bearer: []
+  tags:
+    - schedule
+  summary: "スケジュールのアンケートに候補日を削除"
+  description: "ルームのスケジュールのアンケートに候補日を削除"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            candidateDateId:
+              description: 候補日ID
+              type: number
+              example: 1
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
