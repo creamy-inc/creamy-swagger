@@ -75,6 +75,16 @@
 /schedule/answer:
   $ref: "./schedule/answer.yaml"
 
+#questionnaire
+/questionnaire:
+  $ref: "./questionnaire/index.yaml"
+
+/questionnaire/question:
+  $ref: "./questionnaire/question.yaml"
+  
+/questionnaire/answer:
+  $ref: "./questionnaire/answer.yaml"
+
 #cream
 /cream:
   $ref: "./cream/index.yaml"

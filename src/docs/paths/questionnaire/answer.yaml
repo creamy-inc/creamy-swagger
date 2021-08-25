@@ -1,0 +1,62 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - questionnaire
+  summary: "アンケート候補と回答を取得"
+  description: "アンケート候補とユーザーの回答を取得"
+  parameters:
+    - name: "questionnaireId"
+      in: query
+      description: "アンケートID"
+      required: true
+      type: number
+      example: 1
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Questionnaire"
+    400:
+      $ref: "#/components/responses/400"
+    500:
+      $ref: "#/components/responses/500"
+
+post:
+  security:
+    - Bearer: []
+  tags:
+    - questionnaire
+  summary: "アンケートに回答する"
+  description: "ルームのアンケートに回答する"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            roomId:
+              description: ルームID
+              type: number
+              example: 1
+            questionId:
+              description: 質問ID
+              type: number
+              example: 1
+            answerId:
+              description: 回答ID
+              type: number
+              example: 1
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

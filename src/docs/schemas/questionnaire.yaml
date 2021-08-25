@@ -1,14 +1,13 @@
-# Schedule
 type: object
 properties:
   candidateDateId:
     description: ID
     type: number
     example: 1
-  date:
-    description: 候補日
+  content:
+    description: 質問
     type: string
-    example: "2021-08-12T18:00:00+09:00"
+    example: "焼き肉"
   answers:
     description: 回答
     type: array

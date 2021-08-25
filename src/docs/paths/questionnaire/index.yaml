@@ -1,0 +1,103 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - questionnaire
+  summary: "アンケート一覧を取得"
+  description: "ルームのアンケート一覧を取得"
+  parameters:
+    - name: "roomId"
+      in: query
+      description: "ルームID"
+      required: true
+      type: number
+      example: 1
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                questionnaireId:
+                  description: アンケートID
+                  type: number
+                  example: 1
+                title:
+                  description: タイトル
+                  type: string
+                  example: "食事会"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+post:
+  security:
+    - Bearer: []
+  tags:
+    - questionnaire
+  summary: "アンケートを新規作成"
+  description: "ルームのアンケートを新規作成"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            roomId:
+              description: ルームID
+              type: number
+              example: 1
+            title:
+              description: アンケート名
+              type: string
+              example: "BBQ"
+            content:
+              description: 質問
+              type: array
+              items:
+                type: string
+                example: "焼き肉"
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+delete:
+  security:
+    - Bearer: []
+  tags:
+    - questionnaire
+  summary: "アンケートを削除"
+  description: "ルームのアンケートを削除"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            questionnaireId:
+              description: アンケートID
+              type: number
+              example: 1
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

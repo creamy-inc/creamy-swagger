@@ -42,6 +42,10 @@ Schedule:
   description: スケジュール
   $ref: "./schedule.yaml"
 
+Questionnaire:
+  description: アンケート
+  $ref: "./questionnaire.yaml"
+
 Error:
   description: エラー
   $ref: "./error.yaml"
