@@ -236,10 +236,7 @@ paths:
                   example: xWDG67WKXjROfE22eMEOd7rvYU12
       responses:
         '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FriendInfo'
+          $ref: '#/components/responses/200'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -296,10 +293,7 @@ paths:
           type: string
       responses:
         '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FriendInfo'
+          $ref: '#/components/responses/200'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -410,10 +404,7 @@ paths:
                   example: true
       responses:
         '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserInfo'
+          $ref: '#/components/responses/200'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -471,8 +462,8 @@ paths:
                   type: string
                   example: こんにちは！
       responses:
-        '201':
-          $ref: '#/components/responses/201'
+        '200':
+          $ref: '#/components/responses/200'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -611,12 +602,7 @@ paths:
                   example: こんにちは！
       responses:
         '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Message'
+          $ref: '#/components/responses/200'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -1268,13 +1254,6 @@ components:
         application/json:
           example:
             status: 200
-            message: success
-    '201':
-      description: 成功
-      content:
-        application/json:
-          example:
-            status: 201
             message: success
     '400':
       description: パラメータが不正
