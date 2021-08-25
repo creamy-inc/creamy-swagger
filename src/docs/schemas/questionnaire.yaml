@@ -26,7 +26,8 @@ properties:
           description: 回答アイコン
           type: number
           example: 58478
-        user:
+        users:
           description: 回答しているユーザー
+          type: array
           items:
             $ref: "#/components/schemas/AppUser"
