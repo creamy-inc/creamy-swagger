@@ -1264,8 +1264,8 @@ paths:
         - Bearer: []
       tags:
         - schedule
-      summary: スケジュールのアンケートに候補日を削除
-      description: ルームのスケジュールのアンケートに候補日を削除
+      summary: スケジュールのアンケートの候補日を削除
+      description: ルームのスケジュールのアンケートの候補日を削除
       requestBody:
         required: true
         content:
@@ -1333,6 +1333,229 @@ paths:
                   example: 1
                 candidateDateId:
                   description: 候補日ID
+                  type: number
+                  example: 1
+                answerId:
+                  description: 回答ID
+                  type: number
+                  example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /questionnaire:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - questionnaire
+      summary: アンケート一覧を取得
+      description: ルームのアンケート一覧を取得
+      parameters:
+        - name: roomId
+          in: query
+          description: ルームID
+          required: true
+          type: number
+          example: 1
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    questionnaireId:
+                      description: アンケートID
+                      type: number
+                      example: 1
+                    title:
+                      description: タイトル
+                      type: string
+                      example: 食事会
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - questionnaire
+      summary: アンケートを新規作成
+      description: ルームのアンケートを新規作成
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roomId:
+                  description: ルームID
+                  type: number
+                  example: 1
+                title:
+                  description: アンケート名
+                  type: string
+                  example: BBQ
+                content:
+                  description: 質問
+                  type: array
+                  items:
+                    type: string
+                    example: 焼き肉
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - questionnaire
+      summary: アンケートを削除
+      description: ルームのアンケートを削除
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                questionnaireId:
+                  description: アンケートID
+                  type: number
+                  example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /questionnaire/question:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - questionnaire
+      summary: アンケートに質問を追加
+      description: ルームのアンケートに質問を追加
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                questionnaireId:
+                  description: アンケートID
+                  type: number
+                  example: 1
+                content:
+                  description: 質問文
+                  type: string
+                  example: 焼き肉
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - questionnaire
+      summary: アンケートの質問を削除
+      description: ルームのアンケートの質問を削除
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                qeustionId:
+                  description: 候補日ID
+                  type: number
+                  example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /questionnaire/answer:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - questionnaire
+      summary: アンケート候補と回答を取得
+      description: アンケート候補とユーザーの回答を取得
+      parameters:
+        - name: questionnaireId
+          in: query
+          description: アンケートID
+          required: true
+          type: number
+          example: 1
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Questionnaire'
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - questionnaire
+      summary: アンケートに回答する
+      description: ルームのアンケートに回答する
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roomId:
+                  description: ルームID
+                  type: number
+                  example: 1
+                questionId:
+                  description: 質問ID
                   type: number
                   example: 1
                 answerId:
@@ -1798,7 +2021,40 @@ components:
                 example: 58478
               user:
                 description: 回答しているユーザー
-                type: array
+                items:
+                  $ref: '#/components/schemas/AppUser'
+    Questionnaire:
+      description: アンケート
+      type: object
+      properties:
+        candidateDateId:
+          description: ID
+          type: number
+          example: 1
+        content:
+          description: 質問
+          type: string
+          example: 焼き肉
+        answers:
+          description: 回答
+          type: array
+          items:
+            type: object
+            properties:
+              answerId:
+                description: ID
+                type: number
+                example: 1
+              answerName:
+                description: 回答
+                type: string
+                example: 賛成
+              answerIcon:
+                description: 回答アイコン
+                type: number
+                example: 58478
+              user:
+                description: 回答しているユーザー
                 items:
                   $ref: '#/components/schemas/AppUser'
     Error:
