@@ -1,0 +1,30 @@
+post:
+  security:
+    - Bearer: []
+  tags:
+    - creamy
+  summary: "creamする"
+  description: "ログインユーザからフレンドにcreamする"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            friendUid:
+              description: フレンドユーザーID
+              type: string
+              example: "xWDG67WKXjROfE22eMEOd7rvYU12"
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+  
+  
+  
