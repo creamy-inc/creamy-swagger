@@ -1,0 +1,55 @@
+type: object
+properties:
+  placeName:
+    description: 場所名
+    type: string
+    example: "どんぶり居酒屋 喜水丸〜天神店〜"
+  address:
+    description: 住所
+    type: string
+    example: "福岡市中央区天神２丁目１１−３"
+  latitude:
+    description: 緯度
+    type: number
+    example: 33.5900179
+  longitude:
+    description: 経度
+    type: number
+    example: 130.3988205
+  rate:
+    description: 評価
+    type: number
+    example: 3.8
+  price:
+    description: 価格帯
+    type: number
+    example: 3
+  icon:
+    description: アイコンURL
+    type: string
+    example: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png"
+  openingHours:
+    description: 営業時間情報
+    type: object
+    properties:
+      open_now:
+        description: 現在営業中か
+        type: bool
+        example: true
+      periods:
+        description: 曜日ごとの営業時間
+        type: array
+        items: 
+          type: string
+          example: "Monday: 8:30 am – 5:30 pm"
+      weekday_text:
+        description: 営業曜日
+        type: array
+        items:
+          type: string
+          example: "Monday"
+      permanently_closed:
+        description: 閉店しているか
+        type: bool
+        example: false
+

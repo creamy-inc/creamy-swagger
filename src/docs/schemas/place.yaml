@@ -8,27 +8,27 @@ properties:
   placeName:
     description: 場所名
     type: string
-    example: ""
+    example: "どんぶり居酒屋 喜水丸〜天神店〜"
   address:
     description: 住所
     type: string
-    example: ""
+    example: "福岡市中央区天神２丁目１１−３"
   latitude:
     description: 緯度
     type: number
-    example: 1
+    example: 33.5900179
   longitude:
     description: 経度
     type: number
-    example: 1
+    example: 130.3988205
   rate:
     description: 評価
     type: number
-    example: 1
+    example: 3.8
   price:
     description: 価格帯
     type: number
-    example: 1
+    example: 3
   statusId:
     description: ステータスID
     type: number

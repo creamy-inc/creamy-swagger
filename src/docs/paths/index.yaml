@@ -54,10 +54,16 @@
 
 # place 場所
 /place:
-  $ref: "./place/place.yaml"
+  $ref: "./place/index.yaml"
 
 /place/favo:
   $ref: "./place/favo.yaml"
+
+/place/recommend:
+  $ref: "./place/recommend.yaml"
+
+/place/search:
+  $ref: "./place/search.yaml"
 
 # schedule
 /schedule:

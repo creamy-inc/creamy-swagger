@@ -2,9 +2,9 @@ get:
   security:
     - Bearer: []
   tags:
-    - schedule
-  summary: "スケジュールのアンケート一覧を取得"
-  description: "ルームのスケジュールに関するアンケート一覧を取得"
+    - place
+  summary: "ルームの場所一覧を取得する"
+  description: "ルームに登録されている場所の情報一覧を取得する"
   parameters:
     - name: "roomId"
       in: query
@@ -19,16 +19,7 @@ get:
           schema:
             type: array
             items:
-              type: object
-              properties:
-                scheduleQuestionnaireId:
-                  description: アンケートID
-                  type: number
-                  example: 1
-                title:
-                  description: タイトル
-                  type: string
-                  example: "食事会"
+              $ref: "#/components/schemas/Place"
     400:
       $ref: "#/components/responses/400"
     401:
@@ -40,9 +31,9 @@ post:
   security:
     - Bearer: []
   tags:
-    - schedule
-  summary: "スケジュールのアンケートを新規作成"
-  description: "ルームのスケジュールのアンケートを新規作成"
+    - place
+  summary: "ルームに紐づく場所を登録"
+  description: "ルームに新たな場所の情報を登録"
   requestBody:
     required: true
     content:
@@ -50,20 +41,38 @@ post:
         schema:
           type: object
           properties:
+            placeName:
+              description: 場所名
+              type: string
+              example: ""
+            address:
+              description: 住所
+              type: string
+              example: ""
+            latitude:
+              description: 緯度
+              type: number
+              example: 1
+            longitude:
+              description: 経度
+              type: number
+              example: 1
+            rate:
+              description: 評価
+              type: number
+              example: 1
+            price:
+              description: 価格帯
+              type: number
+              example: 1
             roomId:
               description: ルームID
               type: number
               example: 1
-            title:
-              description: アンケート名
-              type: string
-              example: "BBQ"
-            date:
-              description: 候補日
-              type: array
-              items:
-                type: string
-                example: "2021-08-22T18:00:00+09:00"
+            statusId:
+              description: ステータスID
+              type: number
+              example: 1
   responses:
     200:
       $ref: "#/components/responses/200"
@@ -78,9 +87,9 @@ delete:
   security:
     - Bearer: []
   tags:
-    - schedule
-  summary: "スケジュールのアンケートを削除"
-  description: "ルームのスケジュールのアンケートを削除"
+    - place
+  summary: "ルームに登録されている場所を削除"
+  description: "ルームに紐付いて登録されている場所情報を削除"
   requestBody:
     required: true
     content:
@@ -88,10 +97,10 @@ delete:
         schema:
           type: object
           properties:
-            scheduleQuestionnaireId:
-              description: アンケートID
+            placeId:
+              description: 場所Id
               type: number
-              example: 1
+              example: 2
   responses:
     200:
       $ref: "#/components/responses/200"
@@ -101,3 +110,4 @@ delete:
       $ref: "#/components/responses/401"
     500:
       $ref: "#/components/responses/500"
+  

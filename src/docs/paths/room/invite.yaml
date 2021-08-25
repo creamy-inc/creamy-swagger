@@ -11,6 +11,7 @@ get:
       description: "ルームID"
       required: true
       type: number
+      example: 1
   responses:
     200:
       content:
@@ -53,6 +54,13 @@ post:
       $ref: "#/components/responses/200"
     400:
       $ref: "#/components/responses/400"
+    422:
+      description: すでに招待済みである
+      content:
+        application/json:
+          example:
+            status: 422
+            message: already invited
     401:
       $ref: "#/components/responses/401"
     500:

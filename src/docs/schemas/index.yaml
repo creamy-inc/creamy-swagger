@@ -30,6 +30,10 @@ Place:
   description: 場所
   $ref: "./place.yaml"
 
+PlaceInfo:
+  description: 検索結果の場所情報
+  $ref: "./placeInfo.yaml"
+
 Answer:
   description: 回答
   $ref: "./answer.yaml"

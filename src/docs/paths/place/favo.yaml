@@ -2,7 +2,7 @@ post:
   security:
     - Bearer: []
   tags:
-    - room
+    - place
   summary: "ファボする"
   description: "おすすめの場所に対してファボする"
   requestBody:
@@ -34,7 +34,7 @@ delete:
   security:
     - Bearer: []
   tags:
-    - room
+    - place
   summary: "ファボ解除"
   description: "おすすめの場所に対するファボを解除する"
   requestBody:

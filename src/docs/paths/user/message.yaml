@@ -8,9 +8,10 @@ get:
   parameters:
     - name: "friendUid"
       in: query
-      description: "フレンドUid"
+      description: "フレンドUID"
       required: true
       type: string
+      example: "xWDG67WKXjROfE22eMEOd7rvYU12"
   responses:
     200:
       content:
