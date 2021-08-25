@@ -1,0 +1,88 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - user
+  summary: "フレンド一覧を取得"
+  description: "ログインユーザーのフレンド一覧を取得"
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/AppUser"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+post:
+  security:
+    - Bearer: []
+  tags:
+    - user
+  summary: "フレンド申請・承認"
+  description: "ログインユーザからフレンド申請・承認を行う"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            friendUid:
+              description: フレンドユーザーID
+              type: string
+              example: "xWDG67WKXjROfE22eMEOd7rvYU12"
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/FriendInfo"
+    422:
+      description: すでにフレンドである
+      content:
+        application/json:
+          example:
+            status: 422
+            message: already friend
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+delete:
+  security:
+    - Bearer: []
+  tags:
+    - user
+  summary: "フレンド解除"
+  description: "ログインユーザからフレンド解除を行う"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            friendUid:
+              description: フレンドユーザーID
+              type: string
+              example: "xWDG67WKXjROfE22eMEOd7rvYU12"
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+

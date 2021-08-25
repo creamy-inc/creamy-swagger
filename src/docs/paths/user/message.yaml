@@ -3,8 +3,14 @@ get:
     - Bearer: []
   tags:
     - user
-  summary: "フレンド一覧を取得"
-  description: "ログインユーザーのフレンド一覧を取得"
+  summary: "メッセージ取得"
+  description: "ユーザーとフレンドのDMメッセージ一覧を取得する"
+  parameters:
+    - name: "friendUid"
+      in: query
+      description: "フレンドUid"
+      required: true
+      type: string
   responses:
     200:
       content:
@@ -12,7 +18,7 @@ get:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/AppUser"
+              $ref: "#/components/schemas/Message"
     400:
       $ref: "#/components/responses/400"
     401:
@@ -25,8 +31,8 @@ post:
     - Bearer: []
   tags:
     - user
-  summary: "フレンド申請・承認"
-  description: "ログインユーザからフレンド申請・承認を行う"
+  summary: "メッセージ送信"
+  description: "ユーザーのフレンドにDMメッセージを送信する"
   requestBody:
     required: true
     content:
@@ -35,28 +41,19 @@ post:
           type: object
           properties:
             friendUid:
-              description: フレンドユーザーID
+              description: フレンドUid
               type: string
               example: "xWDG67WKXjROfE22eMEOd7rvYU12"
+            message:
+              description: メッセージの内容
+              type: string
+              example: "こんにちは！"
   responses:
-    200:
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/FriendInfo"
-    422:
-      description: すでにフレンドである
-      content:
-        application/json:
-          example:
-            status: 422
-            message: already friend
+    201:
+      $ref: "#/components/responses/201"
     400:
       $ref: "#/components/responses/400"
     401:
       $ref: "#/components/responses/401"
     500:
       $ref: "#/components/responses/500"
-    
-
-

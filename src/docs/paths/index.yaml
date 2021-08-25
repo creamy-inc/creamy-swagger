@@ -9,10 +9,25 @@
   $ref: "./user/status.yaml"
 
 /user/friend:
-  $ref: "./user/friend.yaml"
+  $ref: "./user/friend/friend.yaml"
+
+/user/friend/{friendUid}:
+  $ref: "./user/friend/friendDirect.yaml"
+
+/user/friend/request:
+  $ref: "./user/friend/friendRequest.yaml"
+
+/user/friend/chat:
+  $ref: "./user/friend/friendChat.yaml"
 
 /user/location:
   $ref: "./user/location.yaml"
+
+/user/active:
+  $ref: "./user/active.yaml"
+
+/user/message:
+  $ref: "./user/message.yaml"
 
 # master マスター
 /status:

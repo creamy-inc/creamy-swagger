@@ -7,6 +7,14 @@
         status: 200
         message: success
 
+201:
+  description: 成功
+  content:
+    application/json:
+      example:
+        status: 201
+        message: success
+
 400:
   description: パラメータが不正
   content:

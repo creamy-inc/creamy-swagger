@@ -1,0 +1,32 @@
+post:
+  security:
+    - Bearer: []
+  tags:
+    - user
+  summary: "相互フレンド認証"
+  description: "ログインユーザとフレンドの相互フレンド認証"
+  parameters:
+    - name: "friendUid"
+      in: "path"
+      description: "フレンドUID"
+      required: true
+      type: "string"
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/FriendInfo"
+    422:
+      description: すでにフレンドである
+      content:
+        application/json:
+          example:
+            status: 422
+            message: already friend
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
