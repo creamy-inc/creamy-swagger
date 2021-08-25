@@ -1,6 +1,8 @@
 get:
   security:
     - Bearer: []
+  summary: "おすすめの場所を検索"
+  description: "ルーム情報をもとにおすすめの場所を検索"
   tags:
     - place
   parameters:

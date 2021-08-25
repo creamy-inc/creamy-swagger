@@ -1,0 +1,67 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - websockets
+  summary: "websocket通信開始"
+  description: "websocketコネクションを確立"
+  responses:
+    Connect:
+      description: "コネクション確立"
+      content:
+        application/json:
+            example:
+              result: "Connected to server"
+    RoomMessage:
+      description: "新規ルームメッセージを通知"
+      content:
+        application/json:
+            example:
+              type: "roomMessage"
+              roomId: 1
+              roomName: "暇な人集合"
+              message: "Hi"
+              time: "2021-08-18T17:13:16.501+09:00"
+              userUid: "xWDG67WKXjROfE22eMEOd7rvYU12"
+              userName: "テストユーザ"
+    directMessage:
+      description: "新規ダイレクトメッセージを通知"
+      content:
+        application/json:
+            example:
+              type: "directMessage"
+              message: "Hi"
+              time: "2021-08-18T17:13:16.501+09:00"
+              userUid: "xWDG67WKXjROfE22eMEOd7rvYU12"
+              userName: "テストユーザ"
+    Invite:
+      description: "ルームに招待されたことを通知"
+      content:
+        application/json:
+            example:
+              type: "invite"
+              roomId: 1
+              roomName: "暇な人集合"
+              userUid: "xWDG67WKXjROfE22eMEOd7rvYU12"
+              userName: "テストユーザ"
+    Join:
+      description: "ルームに新規ユーザが参加したことを通知"
+      content:
+        application/json:
+            example:
+              type: "join"
+              roomId: 1
+              roomName: "暇な人集合"
+              userUid: "xWDG67WKXjROfE22eMEOd7rvYU12"
+              userName: "テストユーザ"
+    Cream:
+      description: "creamされたことを通知"
+      content:
+        application/json:
+            example:
+              type: "cream"
+              userUid: "xWDG67WKXjROfE22eMEOd7rvYU12"
+              userName: "テストユーザ"
+
+    
+

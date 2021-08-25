@@ -78,3 +78,7 @@
 #cream
 /cream:
   $ref: "./cream/index.yaml"
+
+#websockets
+/ws:
+  $ref: "./websockets/index.yaml"

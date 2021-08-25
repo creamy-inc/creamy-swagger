@@ -1,6 +1,8 @@
 get:
   security:
     - Bearer: []
+  summary: "場所を検索"
+  description: "クエリパラメータをもとに場所を検索"
   tags:
     - place
   parameters:
