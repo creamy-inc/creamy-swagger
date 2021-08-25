@@ -1,0 +1,36 @@
+#friendInfo
+type: object
+properties:
+  id: 
+    description: フレンド情報id
+    type: int
+    example: 1
+  userUid:
+    description: ユーザーID
+    type: string
+    example: "xWDG67WKXjROfE22eMEOd7rvYU12"
+
+  friendUid:
+    description: ユーザーID
+    type: string
+    example: "aaa111"
+
+  friendStatus:
+    description: フレンド状態(0 = User -> Friend, 1 = User <-> Friend)
+    type: int
+    example: 0
+
+  createdAt:
+    description: 登録日
+    type: string
+    example: "2021-08-18T17:13:16.501+09:00"
+
+  updatedAt:
+    description: 更新日
+    type: string
+    example: "2021-08-18T17:13:16.501+09:00"
+    
+  deletedAt:
+    description: 削除日
+    type: string
+    example: null

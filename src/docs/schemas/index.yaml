@@ -1,6 +1,14 @@
 AppUser:
-  description: ユーザー
+  description: アプリユーザー
   $ref: "./user.yaml"
+
+UserInfo:
+  description: ユーザ情報
+  $ref: "./userInfo.yaml"
+
+FriendInfo:
+  description: フレンド情報
+  $ref: "./friend.yaml"
 
 Status:
   description: ステータス

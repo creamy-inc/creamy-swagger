@@ -1,4 +1,4 @@
-# AppUser
+#userInfo
 type: object
 properties:
   userUid:
@@ -26,32 +26,17 @@ properties:
     type: boolean
     example: false
 
-  statusId:
-    description: ステータスID
-    type: number
-    example: 2
-
-  statusName:
-    description: ステータス名
-    type: string
-    example: "食事"
-
-  statusUpdated:
-    description: ステータス更新日
+  createdAt:
+    description: 登録日
     type: string
     example: "2021-08-18T17:13:16.501+09:00"
 
-  statusIcon:
-    description: ステータスアイコン
-    type: number
-    example: 61816
-
-  latitude:
-    description: 緯度
-    type: number
-    example: 35.38124649867467
-
-  longitude:
-    description: 経度
-    type: number
-    example: 138.72642646486958
+  updatedAt:
+    description: 更新日
+    type: string
+    example: "2021-08-18T17:13:16.501+09:00"
+    
+  deletedAt:
+    description: 削除日
+    type: string
+    example: null

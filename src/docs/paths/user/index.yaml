@@ -53,7 +53,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/AppUser"
+            $ref: "#/components/schemas/UserInfo"
     400:
       $ref: "#/components/responses/400"
     401:
@@ -96,7 +96,7 @@ patch:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/AppUser"
+            $ref: "#/components/schemas/UserInfo"
     400:
       $ref: "#/components/responses/400"
     401:
