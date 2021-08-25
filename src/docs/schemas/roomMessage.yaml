@@ -1,0 +1,16 @@
+type: object
+properties:
+  roomId:
+    description: ルームID
+    type: number
+    example: 1
+  roomName:
+    description: ルーム名
+    type: string
+    example: "暇な人集まれ！"
+  messages:
+    description: メッセージ一覧
+    type: array
+    items:
+      $ref: "#/components/schemas/Message"
+  

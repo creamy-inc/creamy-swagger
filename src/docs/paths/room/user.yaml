@@ -25,3 +25,60 @@ get:
       $ref: "#/components/responses/401"
     500:
       $ref: "#/components/responses/500"
+
+post:
+  security:
+    - Bearer: []
+  tags: 
+    - room
+  summary: "ルームに参加する"
+  description: "ログインユーザがルームに参加する"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            roomId:
+              description: ルームId
+              type: number
+              example: 2
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+delete:
+  security:
+    - Bearer: []
+  tags: 
+    - room
+  summary: "ルームから退出する"
+  description: "ログインユーザがルームから退出する"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            roomId:
+              description: ルームId
+              type: number
+              example: 2
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+  

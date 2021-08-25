@@ -19,3 +19,69 @@ get:
       $ref: "#/components/responses/401"
     500:
       $ref: "#/components/responses/500"
+
+post:
+  security:
+    - Bearer: []
+  tags:
+    - room
+  summary: "ルームを新規作成"
+  description: "ログインユーザがオーナーのルームを作成"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            roomName:
+              description: ルーム名
+              type: string
+              example: "暇な人集合"
+            roomRange:
+              description: ルーム公開範囲（0:フレンド全体, 1:招待制）
+              type: number
+              example: 0
+            members:
+              description: ルームに招待するユーザUid
+              type: array
+              items:
+                type: string
+                example: "xWDG67WKXjROfE22eMEOd7rvYU12"
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+delete:
+  security:
+    - Bearer: []
+  tags: 
+    - room
+  summary: "ルームを削除"
+  description: "ログインユーザが参加するルームを削除"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            roomId:
+              description: ルームId
+              type: number
+              example: 2
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

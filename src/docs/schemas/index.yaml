@@ -22,6 +22,10 @@ Message:
   description: メッセージ
   $ref: "./message.yaml"
 
+RoomMessage:
+  description: ルームメッセージ
+  $ref: "./roomMessage.yaml"
+
 Place:
   description: 場所
   $ref: "./place.yaml"

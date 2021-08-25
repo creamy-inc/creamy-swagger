@@ -43,17 +43,21 @@
 /room/participate:
   $ref: "./room/participate.yaml"
 
+/room/invite:
+  $ref: "./room/invite.yaml"
+
 /room/message:
   $ref: "./room/message.yaml"
 
 /room/user:
   $ref: "./room/user.yaml"
 
+# place 場所
 /place:
-  $ref: "./room/place.yaml"
+  $ref: "./place/place.yaml"
 
 /place/favo:
-  $ref: "./room/favo.yaml"
+  $ref: "./place/favo.yaml"
 
 # schedule
 /schedule:

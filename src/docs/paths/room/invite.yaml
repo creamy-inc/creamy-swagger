@@ -3,8 +3,8 @@ get:
     - Bearer: []
   tags:
     - room
-  summary: "メッセージ取得"
-  description: "ユーザーが所属するルーム上のメッセージ一覧を取得する"
+  summary: "ルーム招待可能ユーザ一覧取得"
+  description: "ユーザーが所属するルームに招待可能なフレンド一覧を取得する"
   parameters:
     - name: "roomId"
       in: query
@@ -18,7 +18,7 @@ get:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/RoomMessage"
+              $ref: "#/components/schemas/AppUser"
     400:
       $ref: "#/components/responses/400"
     401:
@@ -31,8 +31,8 @@ post:
     - Bearer: []
   tags:
     - room
-  summary: "メッセージ送信"
-  description: "ユーザーが所属するルーム上にメッセージを送信する"
+  summary: "ルームにユーザを招待する"
+  description: "ユーザーが所属するルームにフレンドを招待する"
   requestBody:
     required: true
     content:
@@ -44,10 +44,10 @@ post:
               description: ルームID
               type: number
               example: 1
-            message:
-              description: メッセージの内容
+            userUid:
+              description: ユーザUid
               type: string
-              example: "こんにちは！"
+              example: "xWDG67WKXjROfE22eMEOd7rvYU12"
   responses:
     200:
       $ref: "#/components/responses/200"
