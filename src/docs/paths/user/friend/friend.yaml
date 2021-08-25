@@ -40,10 +40,7 @@ post:
               example: "xWDG67WKXjROfE22eMEOd7rvYU12"
   responses:
     200:
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/FriendInfo"
+      $ref: "#/components/responses/200"
     422:
       description: すでにフレンドである
       content:

@@ -13,10 +13,7 @@ post:
       type: "string"
   responses:
     200:
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/FriendInfo"
+      $ref: "#/components/responses/200"
     422:
       description: すでにフレンドである
       content:
