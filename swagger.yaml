@@ -73,7 +73,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AppUser'
+                $ref: '#/components/schemas/UserInfo'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -115,7 +115,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AppUser'
+                $ref: '#/components/schemas/UserInfo'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -159,7 +159,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AppUser'
+                  $ref: '#/components/schemas/UserInfo'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -214,6 +214,43 @@ paths:
           $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - user
+      summary: フレンド申請・承認
+      description: ログインユーザからフレンド申請・承認を行う
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                friendUid:
+                  description: フレンドユーザーID
+                  type: string
+                  example: xWDG67WKXjROfE22eMEOd7rvYU12
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendInfo'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '422':
+          description: すでにフレンドである
+          content:
+            application/json:
+              example:
+                status: 422
+                message: already friend
         '500':
           $ref: '#/components/responses/500'
   /user/location:
@@ -740,7 +777,7 @@ components:
       description: Credentials or access token for API
   schemas:
     AppUser:
-      description: ユーザー
+      description: アプリユーザー
       type: object
       properties:
         userUid:
@@ -787,10 +824,74 @@ components:
           description: 経度
           type: number
           example: 138.72642646486958
-        distance:
-          description: 'ユーザとの距離(-1 = 自分自身 or 位置情報未取得, 0 = 0~1km, 1 = km~5km, 2 = 5km~)'
-          type: number
+    UserInfo:
+      description: ユーザ情報
+      type: object
+      properties:
+        userUid:
+          description: ユーザーID
+          type: string
+          example: xWDG67WKXjROfE22eMEOd7rvYU12
+        userName:
+          description: ユーザー名
+          type: string
+          example: テストユーザー
+        email:
+          description: メールアドレス
+          type: string
+          example: testuser@creamy.com
+        imageUrl:
+          description: 画像URL
+          type: string
+          example: ''
+        isActive:
+          description: アクティブかどうか
+          type: boolean
+          example: false
+        createdAt:
+          description: 登録日
+          type: string
+          example: '2021-08-18T17:13:16.501+09:00'
+        updatedAt:
+          description: 更新日
+          type: string
+          example: '2021-08-18T17:13:16.501+09:00'
+        deletedAt:
+          description: 削除日
+          type: string
+          example: null
+    FriendInfo:
+      description: フレンド情報
+      type: object
+      properties:
+        id:
+          description: フレンド情報id
+          type: int
+          example: 1
+        userUid:
+          description: ユーザーID
+          type: string
+          example: xWDG67WKXjROfE22eMEOd7rvYU12
+        friendUid:
+          description: ユーザーID
+          type: string
+          example: aaa111
+        friendStatus:
+          description: 'フレンド状態(0 = User -> Friend, 1 = User <-> Friend)'
+          type: int
           example: 0
+        createdAt:
+          description: 登録日
+          type: string
+          example: '2021-08-18T17:13:16.501+09:00'
+        updatedAt:
+          description: 更新日
+          type: string
+          example: '2021-08-18T17:13:16.501+09:00'
+        deletedAt:
+          description: 削除日
+          type: string
+          example: null
     Status:
       description: ステータス
       type: object
