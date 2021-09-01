@@ -19,7 +19,7 @@ post:
             date:
               description: 候補日
               type: string
-              example: "2021-08-22T18:00:00+09:00"
+              example: "2021-08-22T18:00:00.000"
   responses:
     200:
       $ref: "#/components/responses/200"
