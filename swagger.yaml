@@ -704,9 +704,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RoomMessage'
+                $ref: '#/components/schemas/RoomMessage'
         '400':
           $ref: '#/components/responses/400'
         '401':
