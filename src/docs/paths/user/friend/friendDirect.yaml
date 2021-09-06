@@ -4,7 +4,7 @@ post:
   tags:
     - user
   summary: "相互フレンド認証"
-  description: "ログインユーザとフレンドの相互フレンド認証"
+  description: "ログインユーザとフレンドの相互フレンド認証(1回で相互フレンドになる)"
   parameters:
     - name: "friendUid"
       in: "path"

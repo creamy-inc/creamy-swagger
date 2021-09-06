@@ -26,7 +26,7 @@ post:
   tags:
     - user
   summary: "フレンド申請・承認"
-  description: "ログインユーザからフレンド申請・承認を行う"
+  description: "ログインユーザからフレンド申請・承認を行う(相互フレンドになるためには双方向からAPIを叩く必要がある)"
   requestBody:
     required: true
     content:
