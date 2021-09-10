@@ -1853,6 +1853,11 @@ components:
           description: オーナーかどうか
           type: boolean
           example: true
+        users:
+          description: ルームユーザ一覧
+          type: array
+          items:
+            $ref: '#/components/schemas/AppUser'
     Message:
       description: メッセージ
       type: object
