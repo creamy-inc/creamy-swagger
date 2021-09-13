@@ -69,8 +69,8 @@
 /schedule:
   $ref: "./schedule/index.yaml"
 
-/schedule/candidate:
-  $ref: "./schedule/candidate.yaml"
+# /schedule/candidate:
+#   $ref: "./schedule/candidate.yaml"
 
 /schedule/answer:
   $ref: "./schedule/answer.yaml"
