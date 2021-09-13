@@ -90,8 +90,8 @@ delete:
     - Bearer: []
   tags:
     - schedule
-  summary: "スケジュールのアンケートを削除"
-  description: "ルームのスケジュールのアンケートを削除"
+  summary: "スケジュールのアンケートの候補日を削除"
+  description: "ルームのスケジュールのアンケートの候補日を削除"
   requestBody:
     required: true
     content:
