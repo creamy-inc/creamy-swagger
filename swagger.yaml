@@ -1131,67 +1131,13 @@ paths:
         '500':
           $ref: '#/components/responses/500'
   /schedule:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - schedule
-      summary: スケジュールのアンケート一覧を取得
-      description: ルームのスケジュールに関するアンケート一覧を取得
-      parameters:
-        - name: roomId
-          in: query
-          description: ルームID
-          required: true
-          type: number
-          example: 1
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    scheduleQuestionnaireId:
-                      description: アンケートID
-                      type: number
-                      example: 1
-                    title:
-                      description: タイトル
-                      type: string
-                      example: 食事会
-                    start:
-                      description: 候補日開始
-                      type: string
-                      example: '2021-08-12T18:00:00+09:00'
-                    end:
-                      description: 候補日終了
-                      type: string
-                      example: '2021-08-31T08:00:00+09:00'
-                    answerNum:
-                      description: 回答人数
-                      type: number
-                      example: 3
-                    users:
-                      description: 回答ユーザ一覧
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/AppUser'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
     post:
       security:
         - Bearer: []
       tags:
         - schedule
-      summary: スケジュールのアンケートを新規作成
-      description: ルームのスケジュールのアンケートを新規作成
+      summary: スケジュールの候補日を新規作成
+      description: ルームのスケジュールのアンケートの候補日を新規作成
       requestBody:
         required: true
         content:
@@ -1203,16 +1149,10 @@ paths:
                   description: ルームID
                   type: number
                   example: 1
-                title:
-                  description: アンケート名
-                  type: string
-                  example: BBQ
                 date:
                   description: 候補日
-                  type: array
-                  items:
-                    type: string
-                    example: '2021-08-22T18:00:00+09:00'
+                  type: string
+                  example: '2021-08-22T18:00:00'
       responses:
         '200':
           $ref: '#/components/responses/200'
@@ -1236,67 +1176,8 @@ paths:
             schema:
               type: object
               properties:
-                scheduleQuestionnaireId:
-                  description: アンケートID
-                  type: number
-                  example: 1
-      responses:
-        '200':
-          $ref: '#/components/responses/200'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-  /schedule/candidate:
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - schedule
-      summary: スケジュールのアンケートに候補日を追加
-      description: ルームのスケジュールのアンケートに候補日を追加
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                scheduleQuestionnaireId:
-                  description: アンケートID
-                  type: number
-                  example: 1
-                date:
-                  description: 候補日
-                  type: string
-                  example: '2021-08-22T18:00:00.000'
-      responses:
-        '200':
-          $ref: '#/components/responses/200'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-    delete:
-      security:
-        - Bearer: []
-      tags:
-        - schedule
-      summary: スケジュールのアンケートの候補日を削除
-      description: ルームのスケジュールのアンケートの候補日を削除
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                candidateDateId:
-                  description: 候補日ID
+                roomScheduleId:
+                  description: ルームスケジュールID
                   type: number
                   example: 1
       responses:
@@ -1317,9 +1198,9 @@ paths:
       summary: スケジュールのアンケート候補と回答を取得
       description: ルームのスケジュールのアンケート候補とユーザーの回答を取得
       parameters:
-        - name: scheduleQuestionnaireId
+        - name: roomId
           in: query
-          description: アンケートID
+          description: ルームID
           required: true
           type: number
           example: 1
@@ -1353,8 +1234,8 @@ paths:
                   description: ルームID
                   type: number
                   example: 1
-                candidateDateId:
-                  description: 候補日ID
+                roomScheduleId:
+                  description: ルームスケジュールID
                   type: number
                   example: 1
                 answerId:
@@ -2020,8 +1901,8 @@ components:
       description: スケジュール
       type: object
       properties:
-        candidateDateId:
-          description: ID
+        roomScheduleId:
+          description: ルームスケジュールID
           type: number
           example: 1
         date:
