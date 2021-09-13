@@ -13,7 +13,7 @@ properties:
     description: ルーム公開範囲（0:公開, 1:招待性）
     type: number
     example: 0
-  roomMember:
+  memberCount:
     description: ルームの人数
     type: number
     example: 4
