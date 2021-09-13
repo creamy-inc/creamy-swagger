@@ -601,8 +601,8 @@ paths:
         - Bearer: []
       tags:
         - room
-      summary: 招待ルーム一覧を取得
-      description: ユーザーが招待されているルーム一覧を取得する
+      summary: 参加可能なルーム一覧を取得
+      description: ユーザーが参加可能なルーム一覧を取得する
       responses:
         '200':
           content:
@@ -610,7 +610,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Room'
+                  $ref: '#/components/schemas/ParticipateRoom'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -1732,6 +1732,43 @@ components:
           example: xWDG67WKXjROfE22eMEOd7rvYU12
         isOwner:
           description: オーナーかどうか
+          type: boolean
+          example: true
+        users:
+          description: ルームユーザ一覧
+          type: array
+          items:
+            $ref: '#/components/schemas/AppUser'
+    ParticipateRoom:
+      description: ユーザが参加可能なルーム
+      ype: object
+      properties:
+        roomId:
+          description: ルームID
+          type: number
+          example: 1
+        roomName:
+          description: ルーム名
+          type: string
+          example: 暇な人集まれ！
+        roomRange:
+          description: 'ルーム公開範囲（0:公開, 1:招待制）'
+          type: number
+          example: 0
+        memberCount:
+          description: ルームの人数
+          type: number
+          example: 4
+        ownerUid:
+          description: オーナーID
+          type: string
+          example: xWDG67WKXjROfE22eMEOd7rvYU12
+        isOwner:
+          description: オーナーかどうか
+          type: boolean
+          example: true
+        isFriend:
+          description: オーナーがフレンドかどうか
           type: boolean
           example: true
         users:
