@@ -3,8 +3,8 @@ get:
     - Bearer: []
   tags:
     - room
-  summary: "招待ルーム一覧を取得"
-  description: "ユーザーが招待されているルーム一覧を取得する"
+  summary: "参加可能なルーム一覧を取得"
+  description: "ユーザーが参加可能なルーム一覧を取得する"
   responses:
     200:
       content:
@@ -12,7 +12,7 @@ get:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/Room"
+              $ref: "#/components/schemas/ParticipateRoom"
     400:
       $ref: "#/components/responses/400"
     401:

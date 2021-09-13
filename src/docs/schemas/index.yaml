@@ -18,6 +18,10 @@ Room:
   description: ルーム
   $ref: "./room.yaml"
 
+ParticipateRoom:
+  description: ユーザが参加可能なルーム
+  $ref: "./participateRoom.yaml"
+
 Message:
   description: メッセージ
   $ref: "./message.yaml"
