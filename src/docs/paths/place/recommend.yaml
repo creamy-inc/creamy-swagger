@@ -12,36 +12,6 @@ get:
       required: true
       type: number
       example: 1
-    - name: "keyword"
-      in: query
-      description: "検索キーワード"
-      required: true
-      type: string
-      example: "居酒屋"
-    - name: "radius"
-      in: query
-      description: "検索半径(m)"
-      required: true
-      type: number
-      example: 100
-    - name: "minPrice"
-      in: query
-      description: "価格帯下限(0-4)"
-      required: true
-      type: number
-      example: 0
-    - name: "maxPrice"
-      in: query
-      description: "価格帯上限(0-4)"
-      required: true
-      type: number
-      example: 4
-    - name: "openingNow"
-      in: query
-      description: "開店中の店のみを対象とするか"
-      required: true
-      type: bool
-      example: false
   responses:
     200:
       content:

@@ -52,4 +52,16 @@ properties:
         description: 閉店しているか
         type: bool
         example: false
+  statusId:
+    description: ステータスID
+    type: number
+    example: 2
+  statusName:
+    description: ステータス名
+    type: string
+    example: "食事"
+  statusIcon:
+    description: ステータスアイコン
+    type: number
+    example: 61816
 
