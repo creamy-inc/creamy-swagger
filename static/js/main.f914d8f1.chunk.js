@@ -1,0 +1,2 @@
+(this["webpackJsonpcreamy-swagger"]=this["webpackJsonpcreamy-swagger"]||[]).push([[0],{203:function(e,n,t){"use strict";t.r(n);t(0);var r=t(43),c=t.n(r),s=t(186),a=(t(924),t(111)),o=function(){return Object(a.jsx)(s.a,{url:"swagger.yaml"})},u=document.getElementById("root");c.a.render(Object(a.jsx)(o,{}),u)},901:function(e,n){},903:function(e,n){}},[[203,1,2]]]);
+//# sourceMappingURL=main.f914d8f1.chunk.js.map
