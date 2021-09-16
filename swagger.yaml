@@ -840,8 +840,8 @@ paths:
               properties:
                 placeId:
                   description: 場所Id
-                  'true': number
-                  example: 1
+                  'true': string
+                  example: ijkl9012
                 placeName:
                   description: 場所名
                   type: string
@@ -910,8 +910,8 @@ paths:
                   example: 1
                 placeId:
                   description: 場所Id
-                  type: number
-                  example: 2
+                  type: string
+                  example: ijkl9012
       responses:
         '200':
           $ref: '#/components/responses/200'
@@ -942,8 +942,8 @@ paths:
                   example: 1
                 placeId:
                   description: 場所ID
-                  type: number
-                  example: 1
+                  type: string
+                  example: abcd1234
       responses:
         '200':
           $ref: '#/components/responses/200'
@@ -973,8 +973,8 @@ paths:
                   example: 1
                 placeId:
                   description: 場所ID
-                  type: number
-                  example: 1
+                  type: string
+                  example: abcd1234
       responses:
         '200':
           $ref: '#/components/responses/200'
@@ -993,9 +993,9 @@ paths:
       tags:
         - place
       parameters:
-        - name: groupId
+        - name: eventId
           in: query
-          description: グループID
+          description: イベントID
           required: true
           type: number
           example: 1
@@ -1387,8 +1387,8 @@ components:
       properties:
         placeId:
           description: 場所ID
-          type: number
-          example: 1
+          type: string
+          example: abcd1234
         placeName:
           description: 場所名
           type: string
@@ -1444,8 +1444,8 @@ components:
       properties:
         placeId:
           description: 場所ID
-          type: number
-          example: 1
+          type: string
+          example: abcd1234
         placeName:
           description: 場所名
           type: string
