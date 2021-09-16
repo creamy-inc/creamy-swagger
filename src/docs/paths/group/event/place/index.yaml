@@ -3,12 +3,12 @@ get:
     - Bearer: []
   tags:
     - place
-  summary: "ルームの場所一覧を取得する"
-  description: "ルームに登録されている場所の情報一覧を取得する"
+  summary: "グループの場所一覧を取得する"
+  description: "グループに登録されている場所の情報一覧を取得する"
   parameters:
-    - name: "roomId"
+    - name: "groupId"
       in: query
-      description: "ルームID"
+      description: "グループID"
       required: true
       type: number
       example: 1
@@ -19,7 +19,7 @@ get:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/Place"
+              $ref: "#/components/schemas/EventPlace"
     400:
       $ref: "#/components/responses/400"
     401:
@@ -32,8 +32,8 @@ post:
     - Bearer: []
   tags:
     - place
-  summary: "ルームに紐づく場所を登録"
-  description: "ルームに新たな場所の情報を登録"
+  summary: "グループに紐づく場所を登録"
+  description: "グループに新たな場所の情報を登録"
   requestBody:
     required: true
     content:
@@ -41,6 +41,10 @@ post:
         schema:
           type: object
           properties:
+            placeId:
+              description: 場所Id
+              true: number
+              example: 1
             placeName:
               description: 場所名
               type: string
@@ -65,8 +69,8 @@ post:
               description: 価格帯
               type: number
               example: 1
-            roomId:
-              description: ルームID
+            groupId:
+              description: グループID
               type: number
               example: 1
             statusId:
@@ -88,8 +92,8 @@ delete:
     - Bearer: []
   tags:
     - place
-  summary: "ルームに登録されている場所を削除"
-  description: "ルームに紐付いて登録されている場所情報を削除"
+  summary: グループに登録されている場所を削除"
+  description: "グループに紐付いて登録されている場所情報を削除"
   requestBody:
     required: true
     content:

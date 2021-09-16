@@ -1,17 +1,22 @@
-ype: object
+# Group
+type: object
 properties:
-  roomId:
-    description: ルームID
+  groupId:
+    description: グループID
     type: number
     example: 1
-  roomName:
-    description: ルーム名
+  groupName:
+    description: グループ名
     type: string
     example: "暇な人集まれ！"
-  roomRange:
-    description: ルーム公開範囲（0:公開, 1:招待制）
-    type: number
-    example: 0
+  groupImage:
+    description: グループ画像URL
+    type: string
+    example: "https://creamy-app.com/image.png"
+  groupDescription:
+    description: グループの詳細説明
+    type: string
+    example: "暇な人が集まるグループです"
   memberCount:
     description: ルームの人数
     type: number
@@ -24,12 +29,12 @@ properties:
     description: オーナーかどうか
     type: boolean
     example: true
-  isFriend:
-    description: オーナーがフレンドかどうか
+  isJoin:
+    description: グループに参加しているかどうか
     type: boolean
     example: true
   users:
-    description: ルームユーザ一覧
+    description: グループユーザ一覧
     type: array
     items:
       $ref: "#/components/schemas/AppUser"

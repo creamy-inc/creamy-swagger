@@ -2,9 +2,9 @@ get:
   security:
     - Bearer: []
   tags:
-    - room
-  summary: "ルーム一覧を取得"
-  description: "ユーザーが所属するルーム一覧を取得する"
+    - group
+  summary: "グループ一覧を取得"
+  description: "ユーザーが所属するグループ一覧を取得する"
   responses:
     200:
       content:
@@ -12,7 +12,7 @@ get:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/Room"
+              $ref: "#/components/schemas/Group"
     400:
       $ref: "#/components/responses/400"
     401:
@@ -24,9 +24,9 @@ post:
   security:
     - Bearer: []
   tags:
-    - room
-  summary: "ルームを新規作成"
-  description: "ログインユーザがオーナーのルームを作成"
+    - group
+  summary: "グループを新規作成"
+  description: "ログインユーザがオーナーグループを作成"
   requestBody:
     required: true
     content:
@@ -34,16 +34,20 @@ post:
         schema:
           type: object
           properties:
-            roomName:
+            groupName:
               description: ルーム名
               type: string
               example: "暇な人集合"
-            roomRange:
-              description: ルーム公開範囲（0:フレンド全体, 1:招待制）
-              type: number
-              example: 0
+            groupImage:
+              description: グループ画像URL
+              type: string
+              example: "https://creamy-app.com/image.png"
+            groupDescription:
+              description: グループの詳細説明
+              type: string
+              example: "暇な人が集まるグループです"
             members:
-              description: ルームに招待するユーザUid
+              description: ルームに招待するユーザUidリスト
               type: array
               items:
                 type: string
@@ -62,9 +66,9 @@ delete:
   security:
     - Bearer: []
   tags: 
-    - room
-  summary: "ルームを削除"
-  description: "ログインユーザが参加するルームを削除"
+    - group
+  summary: "グループを削除"
+  description: "ログインユーザが参加するグループを削除"
   requestBody:
     required: true
     content:
@@ -72,8 +76,8 @@ delete:
         schema:
           type: object
           properties:
-            roomId:
-              description: ルームId
+            groupId:
+              description: グループId
               type: number
               example: 2
   responses:

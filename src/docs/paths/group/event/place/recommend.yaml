@@ -2,13 +2,13 @@ get:
   security:
     - Bearer: []
   summary: "おすすめの場所を検索"
-  description: "ルーム情報をもとにおすすめの場所を検索"
+  description: "グループ情報をもとにおすすめの場所を検索"
   tags:
     - place
   parameters:
-    - name: "roomId"
+    - name: "groupId"
       in: query
-      description: "ルームID"
+      description: "グループID"
       required: true
       type: number
       example: 1
@@ -26,4 +26,3 @@ get:
       $ref: "#/components/responses/401"
     500:
       $ref: "#/components/responses/500"
-

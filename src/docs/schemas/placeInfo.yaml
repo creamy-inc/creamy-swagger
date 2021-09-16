@@ -1,5 +1,9 @@
 type: object
 properties:
+  placeId:
+    description: 場所ID
+    type: number
+    example: 1
   placeName:
     description: 場所名
     type: string
@@ -24,10 +28,6 @@ properties:
     description: 価格帯
     type: number
     example: 3
-  icon:
-    description: アイコンURL
-    type: string
-    example: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png"
   openingHours:
     description: 営業時間情報
     type: object

@@ -16,8 +16,12 @@ tags:
     description: "Operations about user"
   - name: "master"
     description: "Operations about master"
-  - name: "room"
+  - name: "group"
     description: "Operations about room"
+  - name: "event"
+    description: "Operations about event"
+  - name: "place"
+    description: "Operations about place"
   - name: "schedule"
     description: "Operations about schedule"
 

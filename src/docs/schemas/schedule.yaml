@@ -1,8 +1,8 @@
 # Schedule
 type: object
 properties:
-  roomScheduleId:
-    description: ルームスケジュールID
+  groupScheduleId:
+    description: グループスケジュールID
     type: number
     example: 1
   date:

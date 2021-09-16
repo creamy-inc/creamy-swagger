@@ -1,0 +1,24 @@
+type: object
+properties:
+  eventId:
+    description: イベントID
+    type: number
+    example: 1
+  eventName:
+    description: イベント名
+    type: string
+    example: "テストイベント"
+  eventImage:
+    description: イベント画像URL
+    type: string
+    example: ""
+  eventDescription:
+    description: イベント詳細説明
+    type: string
+    example: ""
+  date:
+    description: イベント日時
+    type: number
+    example: 123456789
+  placeInfo:
+    $ref: "#/components/schemas/PlaceInfo"

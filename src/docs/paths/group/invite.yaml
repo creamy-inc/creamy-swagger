@@ -2,13 +2,13 @@ get:
   security:
     - Bearer: []
   tags:
-    - room
-  summary: "ルーム招待可能ユーザ一覧取得"
-  description: "ユーザーが所属するルームに招待可能なフレンド一覧を取得する"
+    - group
+  summary: "グループ招待可能ユーザ一覧取得"
+  description: "ユーザーが所属するグループに招待可能なフレンド一覧を取得する"
   parameters:
-    - name: "roomId"
+    - name: "groupId"
       in: query
-      description: "ルームID"
+      description: "グループID"
       required: true
       type: number
       example: 1
@@ -31,9 +31,9 @@ post:
   security:
     - Bearer: []
   tags:
-    - room
-  summary: "ルームにユーザを招待する"
-  description: "ユーザーが所属するルームにフレンドを招待する"
+    - group
+  summary: "グループにユーザを招待する"
+  description: "ユーザーが所属するグループにフレンドを招待する"
   requestBody:
     required: true
     content:
@@ -41,8 +41,8 @@ post:
         schema:
           type: object
           properties:
-            roomId:
-              description: ルームID
+            groupId:
+              description: グループID
               type: number
               example: 1
             userUid:

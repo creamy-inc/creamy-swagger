@@ -40,12 +40,16 @@ post:
               description: ユーザー名
               type: string
               example: "テストユーザー"
-            email:
+            userEmail:
               description: メールアドレス
               type: string
               example: "testuser@creamy.com"
-            imageUrl:
+            userImage:
               description: 画像URL
+              type: string
+              example: ""
+            userDescription:
+              description: ユーザの詳細説明
               type: string
               example: ""
   responses:
@@ -83,12 +87,16 @@ patch:
               description: ユーザー名
               type: string
               example: "テストユーザー"
-            email:
+            userEmail:
               description: メールアドレス
               type: string
               example: "testuser@creamy.com"
-            imageUrl:
+            userImage:
               description: 画像URL
+              type: string
+              example: ""
+            userDescription:
+              description: ユーザの詳細説明
               type: string
               example: ""
   responses:

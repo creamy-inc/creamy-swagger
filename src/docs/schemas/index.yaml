@@ -14,25 +14,17 @@ Status:
   description: ステータス
   $ref: "./status.yaml"
 
-Room:
-  description: ルーム
-  $ref: "./room.yaml"
+Group:
+  description: グループ
+  $ref: "./group.yaml"
 
-ParticipateRoom:
-  description: ユーザが参加可能なルーム
-  $ref: "./participateRoom.yaml"
+Event:
+  description: イベント
+  $ref: "./event.yaml"
 
-Message:
-  description: メッセージ
-  $ref: "./message.yaml"
-
-RoomMessage:
-  description: ルームメッセージ
-  $ref: "./roomMessage.yaml"
-
-Place:
-  description: 場所
-  $ref: "./place.yaml"
+EventPlace:
+  description: イベントの場所情報
+  $ref: "./eventPlace.yaml"
 
 PlaceInfo:
   description: 検索結果の場所情報
@@ -46,9 +38,9 @@ Schedule:
   description: スケジュール
   $ref: "./schedule.yaml"
 
-Questionnaire:
-  description: アンケート
-  $ref: "./questionnaire.yaml"
+# Questionnaire:
+#   description: アンケート
+#   $ref: "./questionnaire.yaml"
 
 Error:
   description: エラー

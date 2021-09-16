@@ -3,8 +3,8 @@ post:
     - Bearer: []
   tags:
     - schedule
-  summary: "スケジュールのアンケートに候補日を追加"
-  description: "ルームのスケジュールのアンケートに候補日を追加"
+  summary: "スケジュールの候補日を新規作成"
+  description: "グループのスケジュールのアンケートの候補日を新規作成"
   requestBody:
     required: true
     content:
@@ -12,14 +12,14 @@ post:
         schema:
           type: object
           properties:
-            scheduleQuestionnaireId:
-              description: アンケートID
+            groupId:
+              description: グループID
               type: number
               example: 1
             date:
               description: 候補日
-              type: string
-              example: "2021-08-22T18:00:00.000"
+              type: number
+              example: 123456789
   responses:
     200:
       $ref: "#/components/responses/200"
@@ -36,7 +36,7 @@ delete:
   tags:
     - schedule
   summary: "スケジュールのアンケートの候補日を削除"
-  description: "ルームのスケジュールのアンケートの候補日を削除"
+  description: "グループのスケジュールのアンケートの候補日を削除"
   requestBody:
     required: true
     content:
@@ -44,8 +44,8 @@ delete:
         schema:
           type: object
           properties:
-            candidateDateId:
-              description: 候補日ID
+            groupScheduleId:
+              description: グループスケジュールID
               type: number
               example: 1
   responses:

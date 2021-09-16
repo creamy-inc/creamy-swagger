@@ -17,17 +17,11 @@
 /user/friend/request:
   $ref: "./user/friend/friendRequest.yaml"
 
-/user/friend/chat:
-  $ref: "./user/friend/friendChat.yaml"
-
 /user/location:
   $ref: "./user/location.yaml"
 
 /user/active:
   $ref: "./user/active.yaml"
-
-/user/message:
-  $ref: "./user/message.yaml"
 
 # master マスター
 /status:
@@ -36,59 +30,30 @@
 /answer:
   $ref: "./master/answer.yaml"
 
-# room ルーム
-/room:
-  $ref: "./room/index.yaml"
+# group
+/group:
+  $ref: "./group/index.yaml"
 
-/room/participate:
-  $ref: "./room/participate.yaml"
+/group/invite:
+  $ref: "./group/invite.yaml"
 
-/room/invite:
-  $ref: "./room/invite.yaml"
+/group/user:
+  $ref: "./group/user.yaml"
 
-/room/message:
-  $ref: "./room/message.yaml"
+/group/event:
+  $ref: "./group/event/index.yaml"
 
-/room/user:
-  $ref: "./room/user.yaml"
+/group/event/place:
+  $ref: "./group/event/place/index.yaml"
 
-# place 場所
-/place:
-  $ref: "./place/index.yaml"
+/group/event/place/favo:
+  $ref: "./group/event/place/favo.yaml"
 
-/place/favo:
-  $ref: "./place/favo.yaml"
+/group/event/place/recommend:
+  $ref: "./group/event/place/recommend.yaml"
 
-/place/recommend:
-  $ref: "./place/recommend.yaml"
+/group/event/schedule:
+  $ref: "./group/event/schedule/index.yaml"
 
-/place/search:
-  $ref: "./place/search.yaml"
-
-# schedule
-/schedule:
-  $ref: "./schedule/index.yaml"
-
-# /schedule/candidate:
-#   $ref: "./schedule/candidate.yaml"
-
-/schedule/answer:
-  $ref: "./schedule/answer.yaml"
-
-#questionnaire
-/questionnaire:
-  $ref: "./questionnaire/index.yaml"
-
-/questionnaire/question:
-  $ref: "./questionnaire/question.yaml"
-  
-/questionnaire/answer:
-  $ref: "./questionnaire/answer.yaml"
-
-#cream
-/cream:
-  $ref: "./cream/index.yaml"
-
-#websockets
-/ws:
-  $ref: "./websockets/index.yaml"
+/group/event/schedule/answer:
+  $ref: "./group/event/schedule/answer.yaml"

@@ -6,9 +6,9 @@ get:
   summary: "アンケート一覧を取得"
   description: "ルームのアンケート一覧を取得"
   parameters:
-    - name: "roomId"
+    - name: "groupId"
       in: query
-      description: "ルームID"
+      description: "グループID"
       required: true
       type: number
       example: 1
@@ -50,8 +50,8 @@ post:
         schema:
           type: object
           properties:
-            roomId:
-              description: ルームID
+            groupId:
+              description: グループID
               type: number
               example: 1
             title:

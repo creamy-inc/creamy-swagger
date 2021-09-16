@@ -1,39 +1,10 @@
-get:
-  security:
-    - Bearer: []
-  tags:
-    - room
-  summary: "ユーザー一覧を取得"
-  description: "ルーム内のユーザー一覧を取得する"
-  parameters:
-    - name: "roomId"
-      in: query
-      description: "ルームID"
-      required: true
-      type: number
-      example: 1
-  responses:
-    200:
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: "#/components/schemas/AppUser"
-    400:
-      $ref: "#/components/responses/400"
-    401:
-      $ref: "#/components/responses/401"
-    500:
-      $ref: "#/components/responses/500"
-
 post:
   security:
     - Bearer: []
   tags: 
-    - room
-  summary: "ルームに参加する"
-  description: "ログインユーザがルームに参加する"
+    - group
+  summary: "グループに参加する"
+  description: "ログインユーザがグループに参加する"
   requestBody:
     required: true
     content:
@@ -41,8 +12,8 @@ post:
         schema:
           type: object
           properties:
-            roomId:
-              description: ルームId
+            groupId:
+              description: グループId
               type: number
               example: 2
   responses:
@@ -66,9 +37,9 @@ delete:
   security:
     - Bearer: []
   tags: 
-    - room
-  summary: "ルームから退出する"
-  description: "ログインユーザがルームから退出する"
+    - group
+  summary: "グループから退出する"
+  description: "ログインユーザがグループから退出する"
   requestBody:
     required: true
     content:
@@ -76,8 +47,8 @@ delete:
         schema:
           type: object
           properties:
-            roomId:
-              description: ルームId
+            groupId:
+              description: グループId
               type: number
               example: 2
   responses:

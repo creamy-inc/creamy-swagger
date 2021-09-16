@@ -1,0 +1,96 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - event
+  summary: "イベント一覧を取得"
+  description: "グループのイベント一覧を取得する"
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Event"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+post:
+  security:
+    - Bearer: []
+  tags:
+    - event
+  summary: "イベントを新規作成"
+  description: "グループのイベントを作成"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            eventName:
+              description: イベント名
+              required: true
+              type: string
+              example: "暇な人集合"
+            eventImage:
+              description: イベント画像URL
+              required: true
+              type: string
+              example: "https://creamy-app.com/image.png"
+            eventDescription:
+              description: イベントの詳細説明
+              required: true
+              type: string
+              example: "暇な人が集まるイベントです"
+            date:
+              description: イベント日時
+              type: number
+              example: 123456789
+            placeId:
+              description: 場所ID
+              type: number
+              example: 1
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+delete:
+  security:
+    - Bearer: []
+  tags: 
+    - group
+  summary: "イベントを削除"
+  description: "グループのイベントを削除"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            eventId:
+              description: eventId
+              type: number
+              example: 2
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

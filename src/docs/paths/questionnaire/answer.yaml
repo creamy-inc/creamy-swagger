@@ -39,8 +39,8 @@ post:
         schema:
           type: object
           properties:
-            roomId:
-              description: ルームID
+            groupId:
+              description: グループID
               type: number
               example: 1
             questionId:

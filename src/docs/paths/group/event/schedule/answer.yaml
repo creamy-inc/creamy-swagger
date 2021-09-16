@@ -4,11 +4,11 @@ get:
   tags:
     - schedule
   summary: "スケジュールのアンケート候補と回答を取得"
-  description: "ルームのスケジュールのアンケート候補とユーザーの回答を取得"
+  description: "グループのスケジュールのアンケート候補とユーザーの回答を取得"
   parameters:
-    - name: "roomId"
+    - name: "groupId"
       in: query
-      description: "ルームID"
+      description: "グループID"
       required: true
       type: number
       example: 1
@@ -31,7 +31,7 @@ post:
   tags:
     - schedule
   summary: "スケジュールのアンケートに回答する"
-  description: "ルームのスケジュールのアンケートに回答する"
+  description: "グループのスケジュールのアンケートに回答する"
   requestBody:
     required: true
     content:
@@ -39,12 +39,12 @@ post:
         schema:
           type: object
           properties:
-            roomId:
-              description: ルームID
+            groupId:
+              description: グループID
               type: number
               example: 1
-            roomScheduleId:
-              description: ルームスケジュールID
+            groupScheduleId:
+              description: グループスケジュールID
               type: number
               example: 1
             answerId:
