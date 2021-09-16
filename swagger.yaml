@@ -13,8 +13,12 @@ tags:
     description: Operations about user
   - name: master
     description: Operations about master
-  - name: room
+  - name: group
     description: Operations about room
+  - name: event
+    description: Operations about event
+  - name: place
+    description: Operations about place
   - name: schedule
     description: Operations about schedule
 paths:
@@ -60,12 +64,16 @@ paths:
                   description: ユーザー名
                   type: string
                   example: テストユーザー
-                email:
+                userEmail:
                   description: メールアドレス
                   type: string
                   example: testuser@creamy.com
-                imageUrl:
+                userImage:
                   description: 画像URL
+                  type: string
+                  example: ''
+                userDescription:
+                  description: ユーザの詳細説明
                   type: string
                   example: ''
       responses:
@@ -102,12 +110,16 @@ paths:
                   description: ユーザー名
                   type: string
                   example: テストユーザー
-                email:
+                userEmail:
                   description: メールアドレス
                   type: string
                   example: testuser@creamy.com
-                imageUrl:
+                userImage:
                   description: 画像URL
+                  type: string
+                  example: ''
+                userDescription:
+                  description: ユーザの詳細説明
                   type: string
                   example: ''
       responses:
@@ -331,28 +343,6 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
-  /user/friend/chat:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - user
-      summary: フレンドDMチャット一覧を取得
-      description: ログインユーザーのフレンドとのDMチャットルーム一覧を取得
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Message'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
   /user/location:
     post:
       security:
@@ -413,66 +403,6 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
-  /user/message:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - user
-      summary: メッセージ取得
-      description: ユーザーとフレンドのDMメッセージ一覧を取得する
-      parameters:
-        - name: friendUid
-          in: query
-          description: フレンドUID
-          required: true
-          type: string
-          example: xWDG67WKXjROfE22eMEOd7rvYU12
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Message'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - user
-      summary: メッセージ送信
-      description: ユーザーのフレンドにDMメッセージを送信する
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                friendUid:
-                  description: フレンドUid
-                  type: string
-                  example: xWDG67WKXjROfE22eMEOd7rvYU12
-                message:
-                  description: メッセージの内容
-                  type: string
-                  example: こんにちは！
-      responses:
-        '200':
-          $ref: '#/components/responses/200'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
   /status:
     get:
       tags:
@@ -509,14 +439,14 @@ paths:
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
-  /room:
+  /group:
     get:
       security:
         - Bearer: []
       tags:
-        - room
-      summary: ルーム一覧を取得
-      description: ユーザーが所属するルーム一覧を取得する
+        - group
+      summary: グループ一覧を取得
+      description: ユーザーが所属するグループ一覧を取得する
       responses:
         '200':
           content:
@@ -524,7 +454,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Room'
+                  $ref: '#/components/schemas/Group'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -535,9 +465,9 @@ paths:
       security:
         - Bearer: []
       tags:
-        - room
-      summary: ルームを新規作成
-      description: ログインユーザがオーナーのルームを作成
+        - group
+      summary: グループを新規作成
+      description: ログインユーザがオーナーグループを作成
       requestBody:
         required: true
         content:
@@ -545,16 +475,20 @@ paths:
             schema:
               type: object
               properties:
-                roomName:
+                groupName:
                   description: ルーム名
                   type: string
                   example: 暇な人集合
-                roomRange:
-                  description: 'ルーム公開範囲（0:フレンド全体, 1:招待制）'
-                  type: number
-                  example: 0
+                groupImage:
+                  description: グループ画像URL
+                  type: string
+                  example: 'https://creamy-app.com/image.png'
+                groupDescription:
+                  description: グループの詳細説明
+                  type: string
+                  example: 暇な人が集まるグループです
                 members:
-                  description: ルームに招待するユーザUid
+                  description: ルームに招待するユーザUidリスト
                   type: array
                   items:
                     type: string
@@ -572,9 +506,9 @@ paths:
       security:
         - Bearer: []
       tags:
-        - room
-      summary: ルームを削除
-      description: ログインユーザが参加するルームを削除
+        - group
+      summary: グループを削除
+      description: ログインユーザが参加するグループを削除
       requestBody:
         required: true
         content:
@@ -582,8 +516,8 @@ paths:
             schema:
               type: object
               properties:
-                roomId:
-                  description: ルームId
+                groupId:
+                  description: グループId
                   type: number
                   example: 2
       responses:
@@ -595,40 +529,18 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
-  /room/participate:
+  /group/invite:
     get:
       security:
         - Bearer: []
       tags:
-        - room
-      summary: 参加可能なルーム一覧を取得
-      description: ユーザーが参加可能なルーム一覧を取得する
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ParticipateRoom'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-  /room/invite:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - room
-      summary: ルーム招待可能ユーザ一覧取得
-      description: ユーザーが所属するルームに招待可能なフレンド一覧を取得する
+        - group
+      summary: グループ招待可能ユーザ一覧取得
+      description: ユーザーが所属するグループに招待可能なフレンド一覧を取得する
       parameters:
-        - name: roomId
+        - name: groupId
           in: query
-          description: ルームID
+          description: グループID
           required: true
           type: number
           example: 1
@@ -650,9 +562,9 @@ paths:
       security:
         - Bearer: []
       tags:
-        - room
-      summary: ルームにユーザを招待する
-      description: ユーザーが所属するルームにフレンドを招待する
+        - group
+      summary: グループにユーザを招待する
+      description: ユーザーが所属するグループにフレンドを招待する
       requestBody:
         required: true
         content:
@@ -660,8 +572,8 @@ paths:
             schema:
               type: object
               properties:
-                roomId:
-                  description: ルームID
+                groupId:
+                  description: グループID
                   type: number
                   example: 1
                 userUid:
@@ -684,40 +596,14 @@ paths:
                 message: already invited
         '500':
           $ref: '#/components/responses/500'
-  /room/message:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - room
-      summary: メッセージ取得
-      description: ユーザーが所属するルーム上のメッセージ一覧を取得する
-      parameters:
-        - name: roomId
-          in: query
-          description: ルームID
-          required: true
-          type: number
-          example: 1
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RoomMessage'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
+  /group/user:
     post:
       security:
         - Bearer: []
       tags:
-        - room
-      summary: メッセージ送信
-      description: ユーザーが所属するルーム上にメッセージを送信する
+        - group
+      summary: グループに参加する
+      description: ログインユーザがグループに参加する
       requestBody:
         required: true
         content:
@@ -725,68 +611,8 @@ paths:
             schema:
               type: object
               properties:
-                roomId:
-                  description: ルームID
-                  type: number
-                  example: 1
-                message:
-                  description: メッセージの内容
-                  type: string
-                  example: こんにちは！
-      responses:
-        '200':
-          $ref: '#/components/responses/200'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-  /room/user:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - room
-      summary: ユーザー一覧を取得
-      description: ルーム内のユーザー一覧を取得する
-      parameters:
-        - name: roomId
-          in: query
-          description: ルームID
-          required: true
-          type: number
-          example: 1
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AppUser'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - room
-      summary: ルームに参加する
-      description: ログインユーザがルームに参加する
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                roomId:
-                  description: ルームId
+                groupId:
+                  description: グループId
                   type: number
                   example: 2
       responses:
@@ -809,9 +635,9 @@ paths:
       security:
         - Bearer: []
       tags:
-        - room
-      summary: ルームから退出する
-      description: ログインユーザがルームから退出する
+        - group
+      summary: グループから退出する
+      description: ログインユーザがグループから退出する
       requestBody:
         required: true
         content:
@@ -819,8 +645,8 @@ paths:
             schema:
               type: object
               properties:
-                roomId:
-                  description: ルームId
+                groupId:
+                  description: グループId
                   type: number
                   example: 2
       responses:
@@ -832,18 +658,113 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
-  /place:
+  /group/event:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - event
+      summary: イベント一覧を取得
+      description: グループのイベント一覧を取得する
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - event
+      summary: イベントを新規作成
+      description: グループのイベントを作成
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                eventName:
+                  description: イベント名
+                  required: true
+                  type: string
+                  example: 暇な人集合
+                eventImage:
+                  description: イベント画像URL
+                  required: true
+                  type: string
+                  example: 'https://creamy-app.com/image.png'
+                eventDescription:
+                  description: イベントの詳細説明
+                  required: true
+                  type: string
+                  example: 暇な人が集まるイベントです
+                date:
+                  description: イベント日時
+                  type: number
+                  example: 123456789
+                placeId:
+                  description: 場所ID
+                  type: number
+                  example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - group
+      summary: イベントを削除
+      description: グループのイベントを削除
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                eventId:
+                  description: eventId
+                  type: number
+                  example: 2
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  /group/event/place:
     get:
       security:
         - Bearer: []
       tags:
         - place
-      summary: ルームの場所一覧を取得する
-      description: ルームに登録されている場所の情報一覧を取得する
+      summary: グループの場所一覧を取得する
+      description: グループに登録されている場所の情報一覧を取得する
       parameters:
-        - name: roomId
+        - name: groupId
           in: query
-          description: ルームID
+          description: グループID
           required: true
           type: number
           example: 1
@@ -854,7 +775,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Place'
+                  $ref: '#/components/schemas/EventPlace'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -866,8 +787,8 @@ paths:
         - Bearer: []
       tags:
         - place
-      summary: ルームに紐づく場所を登録
-      description: ルームに新たな場所の情報を登録
+      summary: グループに紐づく場所を登録
+      description: グループに新たな場所の情報を登録
       requestBody:
         required: true
         content:
@@ -875,6 +796,10 @@ paths:
             schema:
               type: object
               properties:
+                placeId:
+                  description: 場所Id
+                  'true': number
+                  example: 1
                 placeName:
                   description: 場所名
                   type: string
@@ -899,8 +824,8 @@ paths:
                   description: 価格帯
                   type: number
                   example: 1
-                roomId:
-                  description: ルームID
+                groupId:
+                  description: グループID
                   type: number
                   example: 1
                 statusId:
@@ -921,8 +846,8 @@ paths:
         - Bearer: []
       tags:
         - place
-      summary: ルームに登録されている場所を削除
-      description: ルームに紐付いて登録されている場所情報を削除
+      summary: グループに登録されている場所を削除"
+      description: グループに紐付いて登録されている場所情報を削除
       requestBody:
         required: true
         content:
@@ -943,14 +868,14 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
-  /place/favo:
+  /group/event/place/favo:
     post:
       security:
         - Bearer: []
       tags:
         - place
       summary: ファボする
-      description: おすすめの場所に対してファボする
+      description: グループに登録されている場所に対してファボする
       requestBody:
         required: true
         content:
@@ -958,8 +883,8 @@ paths:
             schema:
               type: object
               properties:
-                roomId:
-                  description: ルームID
+                groupId:
+                  description: グループID
                   type: number
                   example: 1
                 placeId:
@@ -989,8 +914,8 @@ paths:
             schema:
               type: object
               properties:
-                roomId:
-                  description: ルームID
+                groupId:
+                  description: グループID
                   type: number
                   example: 1
                 placeId:
@@ -1006,18 +931,18 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
-  /place/recommend:
+  /group/event/place/recommend:
     get:
       security:
         - Bearer: []
       summary: おすすめの場所を検索
-      description: ルーム情報をもとにおすすめの場所を検索
+      description: グループ情報をもとにおすすめの場所を検索
       tags:
         - place
       parameters:
-        - name: roomId
+        - name: groupId
           in: query
-          description: ルームID
+          description: グループID
           required: true
           type: number
           example: 1
@@ -1035,79 +960,14 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
-  /place/search:
-    get:
-      security:
-        - Bearer: []
-      summary: 場所を検索
-      description: クエリパラメータをもとに場所を検索
-      tags:
-        - place
-      parameters:
-        - name: latitude
-          in: query
-          description: 緯度
-          required: true
-          type: number
-          example: 33.58897612398786
-        - name: longitude
-          in: query
-          description: 経度
-          required: true
-          type: number
-          example: 130.40002909403307
-        - name: keyword
-          in: query
-          description: 検索キーワード
-          required: true
-          type: string
-          example: 居酒屋
-        - name: radius
-          in: query
-          description: 検索半径(m)
-          required: true
-          type: number
-          example: 100
-        - name: minPrice
-          in: query
-          description: 価格帯下限(0-4)
-          required: true
-          type: number
-          example: 0
-        - name: maxPrice
-          in: query
-          description: 価格帯上限(0-4)
-          required: true
-          type: number
-          example: 4
-        - name: openingNow
-          in: query
-          description: 開店中の店のみを対象とするか
-          required: true
-          type: bool
-          example: false
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PlaceInfo'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-  /schedule:
+  /group/event/schedule:
     post:
       security:
         - Bearer: []
       tags:
         - schedule
       summary: スケジュールの候補日を新規作成
-      description: ルームのスケジュールのアンケートの候補日を新規作成
+      description: グループのスケジュールのアンケートの候補日を新規作成
       requestBody:
         required: true
         content:
@@ -1115,14 +975,14 @@ paths:
             schema:
               type: object
               properties:
-                roomId:
-                  description: ルームID
+                groupId:
+                  description: グループID
                   type: number
                   example: 1
                 date:
                   description: 候補日
-                  type: string
-                  example: '2021-08-22T18:00:00'
+                  type: number
+                  example: 123456789
       responses:
         '200':
           $ref: '#/components/responses/200'
@@ -1138,7 +998,7 @@ paths:
       tags:
         - schedule
       summary: スケジュールのアンケートの候補日を削除
-      description: ルームのスケジュールのアンケートの候補日を削除
+      description: グループのスケジュールのアンケートの候補日を削除
       requestBody:
         required: true
         content:
@@ -1146,8 +1006,8 @@ paths:
             schema:
               type: object
               properties:
-                roomScheduleId:
-                  description: ルームスケジュールID
+                groupScheduleId:
+                  description: グループスケジュールID
                   type: number
                   example: 1
       responses:
@@ -1159,18 +1019,18 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
-  /schedule/answer:
+  /group/event/schedule/answer:
     get:
       security:
         - Bearer: []
       tags:
         - schedule
       summary: スケジュールのアンケート候補と回答を取得
-      description: ルームのスケジュールのアンケート候補とユーザーの回答を取得
+      description: グループのスケジュールのアンケート候補とユーザーの回答を取得
       parameters:
-        - name: roomId
+        - name: groupId
           in: query
-          description: ルームID
+          description: グループID
           required: true
           type: number
           example: 1
@@ -1192,7 +1052,7 @@ paths:
       tags:
         - schedule
       summary: スケジュールのアンケートに回答する
-      description: ルームのスケジュールのアンケートに回答する
+      description: グループのスケジュールのアンケートに回答する
       requestBody:
         required: true
         content:
@@ -1200,12 +1060,12 @@ paths:
             schema:
               type: object
               properties:
-                roomId:
-                  description: ルームID
+                groupId:
+                  description: グループID
                   type: number
                   example: 1
-                roomScheduleId:
-                  description: ルームスケジュールID
+                groupScheduleId:
+                  description: グループスケジュールID
                   type: number
                   example: 1
                 answerId:
@@ -1221,322 +1081,6 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
-  /questionnaire:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - questionnaire
-      summary: アンケート一覧を取得
-      description: ルームのアンケート一覧を取得
-      parameters:
-        - name: roomId
-          in: query
-          description: ルームID
-          required: true
-          type: number
-          example: 1
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    questionnaireId:
-                      description: アンケートID
-                      type: number
-                      example: 1
-                    title:
-                      description: タイトル
-                      type: string
-                      example: 食事会
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - questionnaire
-      summary: アンケートを新規作成
-      description: ルームのアンケートを新規作成
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                roomId:
-                  description: ルームID
-                  type: number
-                  example: 1
-                title:
-                  description: アンケート名
-                  type: string
-                  example: BBQ
-                content:
-                  description: 質問
-                  type: array
-                  items:
-                    type: string
-                    example: 焼き肉
-      responses:
-        '200':
-          $ref: '#/components/responses/200'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-    delete:
-      security:
-        - Bearer: []
-      tags:
-        - questionnaire
-      summary: アンケートを削除
-      description: ルームのアンケートを削除
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                questionnaireId:
-                  description: アンケートID
-                  type: number
-                  example: 1
-      responses:
-        '200':
-          $ref: '#/components/responses/200'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-  /questionnaire/question:
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - questionnaire
-      summary: アンケートに質問を追加
-      description: ルームのアンケートに質問を追加
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                questionnaireId:
-                  description: アンケートID
-                  type: number
-                  example: 1
-                content:
-                  description: 質問文
-                  type: string
-                  example: 焼き肉
-      responses:
-        '200':
-          $ref: '#/components/responses/200'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-    delete:
-      security:
-        - Bearer: []
-      tags:
-        - questionnaire
-      summary: アンケートの質問を削除
-      description: ルームのアンケートの質問を削除
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                qeustionId:
-                  description: 候補日ID
-                  type: number
-                  example: 1
-      responses:
-        '200':
-          $ref: '#/components/responses/200'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-  /questionnaire/answer:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - questionnaire
-      summary: アンケート候補と回答を取得
-      description: アンケート候補とユーザーの回答を取得
-      parameters:
-        - name: questionnaireId
-          in: query
-          description: アンケートID
-          required: true
-          type: number
-          example: 1
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Questionnaire'
-        '400':
-          $ref: '#/components/responses/400'
-        '500':
-          $ref: '#/components/responses/500'
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - questionnaire
-      summary: アンケートに回答する
-      description: ルームのアンケートに回答する
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                roomId:
-                  description: ルームID
-                  type: number
-                  example: 1
-                questionId:
-                  description: 質問ID
-                  type: number
-                  example: 1
-                answerId:
-                  description: 回答ID
-                  type: number
-                  example: 1
-      responses:
-        '200':
-          $ref: '#/components/responses/200'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-  /cream:
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - creamy
-      summary: creamする
-      description: ログインユーザからフレンドにcreamする
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                friendUid:
-                  description: フレンドユーザーID
-                  type: string
-                  example: xWDG67WKXjROfE22eMEOd7rvYU12
-      responses:
-        '200':
-          $ref: '#/components/responses/200'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '500':
-          $ref: '#/components/responses/500'
-  /ws:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - websockets
-      summary: websocket通信開始
-      description: websocketコネクションを確立
-      responses:
-        Connect:
-          description: コネクション確立
-          content:
-            application/json:
-              example:
-                result: Connected to server
-        RoomMessage:
-          description: 新規ルームメッセージを通知
-          content:
-            application/json:
-              example:
-                type: roomMessage
-                roomId: 1
-                roomName: 暇な人集合
-                message: Hi
-                time: '2021-08-18T17:13:16.501+09:00'
-                userUid: xWDG67WKXjROfE22eMEOd7rvYU12
-                userName: テストユーザ
-        directMessage:
-          description: 新規ダイレクトメッセージを通知
-          content:
-            application/json:
-              example:
-                type: directMessage
-                message: Hi
-                time: '2021-08-18T17:13:16.501+09:00'
-                userUid: xWDG67WKXjROfE22eMEOd7rvYU12
-                userName: テストユーザ
-        Invite:
-          description: ルームに招待されたことを通知
-          content:
-            application/json:
-              example:
-                type: invite
-                roomId: 1
-                roomName: 暇な人集合
-                userUid: xWDG67WKXjROfE22eMEOd7rvYU12
-                userName: テストユーザ
-        Join:
-          description: ルームに新規ユーザが参加したことを通知
-          content:
-            application/json:
-              example:
-                type: join
-                roomId: 1
-                roomName: 暇な人集合
-                userUid: xWDG67WKXjROfE22eMEOd7rvYU12
-                userName: テストユーザ
-        Cream:
-          description: creamされたことを通知
-          content:
-            application/json:
-              example:
-                type: cream
-                userUid: xWDG67WKXjROfE22eMEOd7rvYU12
-                userName: テストユーザ
 components:
   securitySchemes:
     Bearer:
@@ -1556,12 +1100,16 @@ components:
           description: ユーザー名
           type: string
           example: テストユーザー
-        email:
+        userEmail:
           description: メールアドレス
           type: string
           example: testuser@creamy.com
-        imageUrl:
+        userImage:
           description: 画像URL
+          type: string
+          example: ''
+        userDescription:
+          description: ユーザの詳細説明
           type: string
           example: ''
         isActive:
@@ -1676,22 +1224,26 @@ components:
           description: ステータスアイコン
           type: number
           example: 61816
-    Room:
-      description: ルーム
+    Group:
+      description: グループ
       type: object
       properties:
-        roomId:
-          description: ルームID
+        groupId:
+          description: グループID
           type: number
           example: 1
-        roomName:
-          description: ルーム名
+        groupName:
+          description: グループ名
           type: string
           example: 暇な人集まれ！
-        roomRange:
-          description: 'ルーム公開範囲（0:公開, 1:招待性）'
-          type: number
-          example: 0
+        groupImage:
+          description: グループ画像URL
+          type: string
+          example: 'https://creamy-app.com/image.png'
+        groupDescription:
+          description: グループの詳細説明
+          type: string
+          example: 暇な人が集まるグループです
         memberCount:
           description: ルームの人数
           type: number
@@ -1704,82 +1256,43 @@ components:
           description: オーナーかどうか
           type: boolean
           example: true
-        users:
-          description: ルームユーザ一覧
-          type: array
-          items:
-            $ref: '#/components/schemas/AppUser'
-    ParticipateRoom:
-      description: ユーザが参加可能なルーム
-      ype: object
-      properties:
-        roomId:
-          description: ルームID
-          type: number
-          example: 1
-        roomName:
-          description: ルーム名
-          type: string
-          example: 暇な人集まれ！
-        roomRange:
-          description: 'ルーム公開範囲（0:公開, 1:招待制）'
-          type: number
-          example: 0
-        memberCount:
-          description: ルームの人数
-          type: number
-          example: 4
-        ownerUid:
-          description: オーナーID
-          type: string
-          example: xWDG67WKXjROfE22eMEOd7rvYU12
-        isOwner:
-          description: オーナーかどうか
-          type: boolean
-          example: true
-        isFriend:
-          description: オーナーがフレンドかどうか
+        isJoin:
+          description: グループに参加しているかどうか
           type: boolean
           example: true
         users:
-          description: ルームユーザ一覧
+          description: グループユーザ一覧
           type: array
           items:
             $ref: '#/components/schemas/AppUser'
-    Message:
-      description: メッセージ
+    Event:
+      description: イベント
       type: object
       properties:
-        message:
-          description: メッセージ内容
-          type: string
-          example: こんにちは！
-        time:
-          description: 登録日
-          type: string
-          example: '2021-08-18T17:13:16.501+09:00'
-        user:
-          description: ユーザー情報
-          $ref: '#/components/schemas/AppUser'
-    RoomMessage:
-      description: ルームメッセージ
-      type: object
-      properties:
-        roomId:
-          description: ルームID
+        eventId:
+          description: イベントID
           type: number
           example: 1
-        roomName:
-          description: ルーム名
+        eventName:
+          description: イベント名
           type: string
-          example: 暇な人集まれ！
-        messages:
-          description: メッセージ一覧
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-    Place:
-      description: 場所
+          example: テストイベント
+        eventImage:
+          description: イベント画像URL
+          type: string
+          example: ''
+        eventDescription:
+          description: イベント詳細説明
+          type: string
+          example: ''
+        date:
+          description: イベント日時
+          type: number
+          example: 123456789
+        placeInfo:
+          $ref: '#/components/schemas/PlaceInfo'
+    EventPlace:
+      description: イベントの場所情報
       type: object
       properties:
         placeId:
@@ -1835,6 +1348,10 @@ components:
       description: 検索結果の場所情報
       type: object
       properties:
+        placeId:
+          description: 場所ID
+          type: number
+          example: 1
         placeName:
           description: 場所名
           type: string
@@ -1859,11 +1376,6 @@ components:
           description: 価格帯
           type: number
           example: 3
-        icon:
-          description: アイコンURL
-          type: string
-          example: >-
-            https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
         openingHours:
           description: 営業時間情報
           type: object
@@ -1920,49 +1432,14 @@ components:
       description: スケジュール
       type: object
       properties:
-        roomScheduleId:
-          description: ルームスケジュールID
+        groupScheduleId:
+          description: グループスケジュールID
           type: number
           example: 1
         date:
           description: 候補日
           type: string
           example: '2021-08-12T18:00:00+09:00'
-        answers:
-          description: 回答
-          type: array
-          items:
-            type: object
-            properties:
-              answerId:
-                description: ID
-                type: number
-                example: 1
-              answerName:
-                description: 回答
-                type: string
-                example: 賛成
-              answerIcon:
-                description: 回答アイコン
-                type: number
-                example: 58478
-              users:
-                description: 回答しているユーザー
-                type: array
-                items:
-                  $ref: '#/components/schemas/AppUser'
-    Questionnaire:
-      description: アンケート
-      type: object
-      properties:
-        candidateDateId:
-          description: ID
-          type: number
-          example: 1
-        content:
-          description: 質問
-          type: string
-          example: 焼き肉
         answers:
           description: 回答
           type: array

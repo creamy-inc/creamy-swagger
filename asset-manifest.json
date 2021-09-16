@@ -5,16 +5,16 @@
     "runtime-main.js": "/creamy-swagger/static/js/runtime-main.1e2959b5.js",
     "runtime-main.js.map": "/creamy-swagger/static/js/runtime-main.1e2959b5.js.map",
     "static/css/2.8cd21c33.chunk.css": "/creamy-swagger/static/css/2.8cd21c33.chunk.css",
-    "static/js/2.9bad1061.chunk.js": "/creamy-swagger/static/js/2.9bad1061.chunk.js",
-    "static/js/2.9bad1061.chunk.js.map": "/creamy-swagger/static/js/2.9bad1061.chunk.js.map",
+    "static/js/2.bcbbdc27.chunk.js": "/creamy-swagger/static/js/2.bcbbdc27.chunk.js",
+    "static/js/2.bcbbdc27.chunk.js.map": "/creamy-swagger/static/js/2.bcbbdc27.chunk.js.map",
     "index.html": "/creamy-swagger/index.html",
     "static/css/2.8cd21c33.chunk.css.map": "/creamy-swagger/static/css/2.8cd21c33.chunk.css.map",
-    "static/js/2.9bad1061.chunk.js.LICENSE.txt": "/creamy-swagger/static/js/2.9bad1061.chunk.js.LICENSE.txt"
+    "static/js/2.bcbbdc27.chunk.js.LICENSE.txt": "/creamy-swagger/static/js/2.bcbbdc27.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1e2959b5.js",
     "static/css/2.8cd21c33.chunk.css",
-    "static/js/2.9bad1061.chunk.js",
+    "static/js/2.bcbbdc27.chunk.js",
     "static/js/main.f914d8f1.chunk.js"
   ]
 }
