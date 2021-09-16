@@ -43,8 +43,8 @@ post:
           properties:
             placeId:
               description: 場所Id
-              true: number
-              example: 1
+              true: string
+              example: ijkl9012
             placeName:
               description: 場所名
               type: string
@@ -114,8 +114,8 @@ delete:
               example: 1
             placeId:
               description: 場所Id
-              type: number
-              example: 2
+              type: string
+              example: ijkl9012
   responses:
     200:
       $ref: "#/components/responses/200"

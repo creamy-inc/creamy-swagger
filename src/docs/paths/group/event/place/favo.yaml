@@ -18,8 +18,8 @@ post:
               example: 1
             placeId:
               description: 場所ID
-              type: number
-              example: 1
+              type: string
+              example: abcd1234
   responses:
     200:
       $ref: "#/components/responses/200"
@@ -50,8 +50,8 @@ delete:
               example: 1
             placeId:
               description: 場所ID
-              type: number
-              example: 1
+              type: string
+              example: abcd1234
   responses:
     200:
       $ref: "#/components/responses/200"

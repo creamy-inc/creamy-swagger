@@ -3,8 +3,8 @@ type: object
 properties:
   placeId:
     description: 場所ID
-    type: number
-    example: 1
+    type: string
+    example: abcd1234
   placeName:
     description: 場所名
     type: string

@@ -6,9 +6,9 @@ get:
   tags:
     - place
   parameters:
-    - name: "groupId"
+    - name: "eventId"
       in: query
-      description: "グループID"
+      description: "イベントID"
       required: true
       type: number
       example: 1
