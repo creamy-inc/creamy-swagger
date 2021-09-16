@@ -6,6 +6,8 @@ info:
 servers:
   - url: 'https://creamy-app.com/api/v1'
     description: Staging Server
+  - url: 'https://creamy-app.com/api/v2'
+    description: Develop Server
   - url: 'http://localhost:8080'
     description: Development Server
 tags:
@@ -56,10 +58,6 @@ paths:
             schema:
               type: object
               properties:
-                userUid:
-                  description: ユーザーID
-                  type: string
-                  example: xWDG67WKXjROfE22eMEOd7rvYU12
                 userName:
                   description: ユーザー名
                   type: string
@@ -102,10 +100,6 @@ paths:
             schema:
               type: object
               properties:
-                userUid:
-                  description: ユーザーID
-                  type: string
-                  example: xWDG67WKXjROfE22eMEOd7rvYU12
                 userName:
                   description: ユーザー名
                   type: string
@@ -159,12 +153,12 @@ paths:
       summary: ユーザー検索
       description: ユーザー検索
       parameters:
-        - name: userName
+        - name: userUid
           in: query
-          description: ユーザー名
+          description: ユーザーID
           required: true
           type: string
-          example: テストユーザ
+          example: xWDG67WKXjROfE22eMEOd7rvYU12
       responses:
         '200':
           content:
@@ -381,8 +375,8 @@ paths:
         - Bearer: []
       tags:
         - user
-      summary: ユーザー情報を登録
-      description: ログインユーザーの情報を登録
+      summary: ユーザのアクティブ状態の変更
+      description: ログインユーザーのアクティブ状態を変更
       requestBody:
         required: true
         content:
@@ -597,6 +591,43 @@ paths:
         '500':
           $ref: '#/components/responses/500'
   /group/user:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - group
+      summary: ユーザー一覧を取得
+      description: グループ内のユーザー一覧を取得する
+      parameters:
+        - name: groupId
+          in: query
+          description: グループID
+          required: true
+          type: number
+          example: 1
+        - name: page
+          in: query
+          description: ページ
+          type: number
+          example: 1
+        - name: pageSize
+          in: query
+          description: ページサイズ(10<pageSize<100)
+          example: 100
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppUser'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
     post:
       security:
         - Bearer: []
@@ -666,6 +697,13 @@ paths:
         - event
       summary: イベント一覧を取得
       description: グループのイベント一覧を取得する
+      parameters:
+        - name: groupId
+          in: query
+          description: グループID
+          required: true
+          type: number
+          example: 1
       responses:
         '200':
           content:
@@ -694,6 +732,10 @@ paths:
             schema:
               type: object
               properties:
+                groupId:
+                  description: グループID
+                  required: true
+                  example: 1
                 eventName:
                   description: イベント名
                   required: true
@@ -730,7 +772,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - group
+        - event
       summary: イベントを削除
       description: グループのイベントを削除
       requestBody:
@@ -759,12 +801,12 @@ paths:
         - Bearer: []
       tags:
         - place
-      summary: グループの場所一覧を取得する
-      description: グループに登録されている場所の情報一覧を取得する
+      summary: イベントの場所一覧を取得する
+      description: イベントに登録されている場所の情報一覧を取得する
       parameters:
-        - name: groupId
+        - name: eventId
           in: query
-          description: グループID
+          description: イベントID
           required: true
           type: number
           example: 1
@@ -787,8 +829,8 @@ paths:
         - Bearer: []
       tags:
         - place
-      summary: グループに紐づく場所を登録
-      description: グループに新たな場所の情報を登録
+      summary: イベントに紐づく場所を登録
+      description: イベントに新たな場所の情報を登録
       requestBody:
         required: true
         content:
@@ -824,8 +866,8 @@ paths:
                   description: 価格帯
                   type: number
                   example: 1
-                groupId:
-                  description: グループID
+                eventId:
+                  description: イベントID
                   type: number
                   example: 1
                 statusId:
@@ -839,6 +881,13 @@ paths:
           $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
+        '422':
+          description: すでに登録済みである
+          content:
+            application/json:
+              example:
+                status: 422
+                message: Already Registed
         '500':
           $ref: '#/components/responses/500'
     delete:
@@ -846,8 +895,8 @@ paths:
         - Bearer: []
       tags:
         - place
-      summary: グループに登録されている場所を削除"
-      description: グループに紐付いて登録されている場所情報を削除
+      summary: イベントに登録されている場所を削除"
+      description: イベントに紐付いて登録されている場所情報を削除
       requestBody:
         required: true
         content:
@@ -855,6 +904,10 @@ paths:
             schema:
               type: object
               properties:
+                eventId:
+                  description: イベントID
+                  type: number
+                  example: 1
                 placeId:
                   description: 場所Id
                   type: number
@@ -875,7 +928,7 @@ paths:
       tags:
         - place
       summary: ファボする
-      description: グループに登録されている場所に対してファボする
+      description: イベントに登録されている場所に対してファボする
       requestBody:
         required: true
         content:
@@ -883,8 +936,8 @@ paths:
             schema:
               type: object
               properties:
-                groupId:
-                  description: グループID
+                eventId:
+                  description: イベントID
                   type: number
                   example: 1
                 placeId:
@@ -914,8 +967,8 @@ paths:
             schema:
               type: object
               properties:
-                groupId:
-                  description: グループID
+                eventId:
+                  description: イベントID
                   type: number
                   example: 1
                 placeId:
@@ -975,8 +1028,8 @@ paths:
             schema:
               type: object
               properties:
-                groupId:
-                  description: グループID
+                eventId:
+                  description: イベントID
                   type: number
                   example: 1
                 date:
@@ -1006,8 +1059,8 @@ paths:
             schema:
               type: object
               properties:
-                groupScheduleId:
-                  description: グループスケジュールID
+                eventScheduleId:
+                  description: イベントスケジュールID
                   type: number
                   example: 1
       responses:
@@ -1028,9 +1081,9 @@ paths:
       summary: スケジュールのアンケート候補と回答を取得
       description: グループのスケジュールのアンケート候補とユーザーの回答を取得
       parameters:
-        - name: groupId
+        - name: eventId
           in: query
-          description: グループID
+          description: イベントID
           required: true
           type: number
           example: 1
@@ -1060,12 +1113,8 @@ paths:
             schema:
               type: object
               properties:
-                groupId:
-                  description: グループID
-                  type: number
-                  example: 1
-                groupScheduleId:
-                  description: グループスケジュールID
+                eventScheduleId:
+                  description: イベントスケジュールID
                   type: number
                   example: 1
                 answerId:
@@ -1126,8 +1175,8 @@ components:
           example: 食事
         statusUpdated:
           description: ステータス更新日
-          type: string
-          example: '2021-08-18T17:13:16.501+09:00'
+          type: number
+          example: 123456789
         statusIcon:
           description: ステータスアイコン
           type: number
@@ -1166,12 +1215,12 @@ components:
           example: false
         createdAt:
           description: 登録日
-          type: string
-          example: '2021-08-18T17:13:16.501+09:00'
+          type: number
+          example: 123456789
         updatedAt:
           description: 更新日
-          type: string
-          example: '2021-08-18T17:13:16.501+09:00'
+          type: number
+          example: 123456789
         deletedAt:
           description: 削除日
           type: string
@@ -1290,7 +1339,48 @@ components:
           type: number
           example: 123456789
         placeInfo:
-          $ref: '#/components/schemas/PlaceInfo'
+          type: object
+          properties:
+            placeId:
+              description: 場所ID
+              type: number
+              example: 1
+            placeName:
+              description: 場所名
+              type: string
+              example: どんぶり居酒屋 喜水丸〜天神店〜
+            address:
+              description: 住所
+              type: string
+              example: 福岡市中央区天神２丁目１１−３
+            latitude:
+              description: 緯度
+              type: number
+              example: 33.5900179
+            longitude:
+              description: 経度
+              type: number
+              example: 130.3988205
+            rate:
+              description: 評価
+              type: number
+              example: 3.8
+            price:
+              description: 価格帯
+              type: number
+              example: 3
+            statusId:
+              description: ステータスID
+              type: number
+              example: 1
+            statusName:
+              description: ステータス名
+              type: string
+              example: ''
+            statusIcon:
+              description: ステータスアイコン
+              type: number
+              example: 1
     EventPlace:
       description: イベントの場所情報
       type: object
@@ -1335,6 +1425,10 @@ components:
           description: ステータスアイコン
           type: number
           example: 1
+        favoCount:
+          description: ファボしている人数
+          type: number
+          example: 2
         isFavo:
           description: ファボしているかどうか
           type: boolean
