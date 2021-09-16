@@ -4,7 +4,7 @@ post:
   tags:
     - place
   summary: "ファボする"
-  description: "グループに登録されている場所に対してファボする"
+  description: "イベントに登録されている場所に対してファボする"
   requestBody:
     required: true
     content:
@@ -12,8 +12,8 @@ post:
         schema:
           type: object
           properties:
-            groupId:
-              description: グループID
+            eventId:
+              description: イベントID
               type: number
               example: 1
             placeId:
@@ -44,8 +44,8 @@ delete:
         schema:
           type: object
           properties:
-            groupId:
-              description: グループID
+            eventId:
+              description: イベントID
               type: number
               example: 1
             placeId:

@@ -41,6 +41,10 @@ properties:
     description: ステータスアイコン
     type: number
     example: 1
+  favoCount:
+    description: ファボしている人数
+    type: number
+    example: 2
   isFavo:
     description: ファボしているかどうか
     type: boolean

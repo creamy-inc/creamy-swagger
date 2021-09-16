@@ -32,10 +32,6 @@ post:
         schema:
           type: object
           properties:
-            userUid:
-              description: ユーザーID
-              type: string
-              example: "xWDG67WKXjROfE22eMEOd7rvYU12"
             userName:
               description: ユーザー名
               type: string
@@ -79,10 +75,6 @@ patch:
         schema:
           type: object
           properties:
-            userUid:
-              description: ユーザーID
-              type: string
-              example: "xWDG67WKXjROfE22eMEOd7rvYU12"
             userName:
               description: ユーザー名
               type: string

@@ -6,9 +6,9 @@ get:
   summary: "スケジュールのアンケート候補と回答を取得"
   description: "グループのスケジュールのアンケート候補とユーザーの回答を取得"
   parameters:
-    - name: "groupId"
+    - name: "eventId"
       in: query
-      description: "グループID"
+      description: "イベントID"
       required: true
       type: number
       example: 1
@@ -39,12 +39,8 @@ post:
         schema:
           type: object
           properties:
-            groupId:
-              description: グループID
-              type: number
-              example: 1
-            groupScheduleId:
-              description: グループスケジュールID
+            eventScheduleId:
+              description: イベントスケジュールID
               type: number
               example: 1
             answerId:

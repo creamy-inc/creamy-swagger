@@ -28,13 +28,13 @@ properties:
 
   createdAt:
     description: 登録日
-    type: string
-    example: "2021-08-18T17:13:16.501+09:00"
+    type: number
+    example: 123456789
 
   updatedAt:
     description: 更新日
-    type: string
-    example: "2021-08-18T17:13:16.501+09:00"
+    type: number
+    example: 123456789
     
   deletedAt:
     description: 削除日

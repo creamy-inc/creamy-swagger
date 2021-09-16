@@ -5,6 +5,13 @@ get:
     - event
   summary: "イベント一覧を取得"
   description: "グループのイベント一覧を取得する"
+  parameters:
+    - name: "groupId"
+      in: query
+      description: "グループID"
+      required: true
+      type: number
+      example: 1
   responses:
     200:
       content:
@@ -34,6 +41,10 @@ post:
         schema:
           type: object
           properties:
+            groupId:
+              description: グループID
+              required: true
+              example: 1
             eventName:
               description: イベント名
               required: true
@@ -71,7 +82,7 @@ delete:
   security:
     - Bearer: []
   tags: 
-    - group
+    - event
   summary: "イベントを削除"
   description: "グループのイベントを削除"
   requestBody:

@@ -1,3 +1,41 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - group
+  summary: "ユーザー一覧を取得"
+  description: "グループ内のユーザー一覧を取得する"
+  parameters:
+    - name: "groupId"
+      in: query
+      description: "グループID"
+      required: true
+      type: number
+      example: 1
+    - name: "page"
+      in: query
+      description: ページ
+      type: number
+      example: 1
+    - name: "pageSize"
+      in: query
+      description: ページサイズ(10<pageSize<100)
+      example: 100
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/AppUser"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
 post:
   security:
     - Bearer: []

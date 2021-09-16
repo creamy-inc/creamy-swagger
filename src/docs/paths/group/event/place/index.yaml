@@ -3,12 +3,12 @@ get:
     - Bearer: []
   tags:
     - place
-  summary: "グループの場所一覧を取得する"
-  description: "グループに登録されている場所の情報一覧を取得する"
+  summary: "イベントの場所一覧を取得する"
+  description: "イベントに登録されている場所の情報一覧を取得する"
   parameters:
-    - name: "groupId"
+    - name: "eventId"
       in: query
-      description: "グループID"
+      description: "イベントID"
       required: true
       type: number
       example: 1
@@ -32,8 +32,8 @@ post:
     - Bearer: []
   tags:
     - place
-  summary: "グループに紐づく場所を登録"
-  description: "グループに新たな場所の情報を登録"
+  summary: "イベントに紐づく場所を登録"
+  description: "イベントに新たな場所の情報を登録"
   requestBody:
     required: true
     content:
@@ -69,8 +69,8 @@ post:
               description: 価格帯
               type: number
               example: 1
-            groupId:
-              description: グループID
+            eventId:
+              description: イベントID
               type: number
               example: 1
             statusId:
@@ -84,6 +84,13 @@ post:
       $ref: "#/components/responses/400"
     401:
       $ref: "#/components/responses/401"
+    422:
+      description: すでに登録済みである
+      content:
+        application/json:
+          example:
+            status: 422
+            message: Already Registed
     500:
       $ref: "#/components/responses/500"
 
@@ -92,8 +99,8 @@ delete:
     - Bearer: []
   tags:
     - place
-  summary: グループに登録されている場所を削除"
-  description: "グループに紐付いて登録されている場所情報を削除"
+  summary: イベントに登録されている場所を削除"
+  description: "イベントに紐付いて登録されている場所情報を削除"
   requestBody:
     required: true
     content:
@@ -101,6 +108,10 @@ delete:
         schema:
           type: object
           properties:
+            eventId:
+              description: イベントID
+              type: number
+              example: 1
             placeId:
               description: 場所Id
               type: number

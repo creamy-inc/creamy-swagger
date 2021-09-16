@@ -6,12 +6,12 @@ get:
   summary: "ユーザー検索"
   description: "ユーザー検索"
   parameters:
-    - name: "userName"
+    - name: "userUid"
       in: query
-      description: "ユーザー名"
+      description: "ユーザーID"
       required: true
       type: string
-      example: "テストユーザ"
+      example: "xWDG67WKXjROfE22eMEOd7rvYU12"
   responses:
     200:
       content:

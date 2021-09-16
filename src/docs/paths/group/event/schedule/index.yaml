@@ -12,8 +12,8 @@ post:
         schema:
           type: object
           properties:
-            groupId:
-              description: グループID
+            eventId:
+              description: イベントID
               type: number
               example: 1
             date:
@@ -44,8 +44,8 @@ delete:
         schema:
           type: object
           properties:
-            groupScheduleId:
-              description: グループスケジュールID
+            eventScheduleId:
+              description: イベントスケジュールID
               type: number
               example: 1
   responses:

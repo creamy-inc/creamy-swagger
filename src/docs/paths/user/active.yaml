@@ -3,8 +3,8 @@ post:
     - Bearer: []
   tags:
     - user
-  summary: "ユーザー情報を登録"
-  description: "ログインユーザーの情報を登録"
+  summary: "ユーザのアクティブ状態の変更"
+  description: "ログインユーザーのアクティブ状態を変更"
   requestBody:
     required: true
     content:
