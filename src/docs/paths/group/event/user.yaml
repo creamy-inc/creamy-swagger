@@ -1,0 +1,62 @@
+post:
+  security:
+    - Bearer: []
+  tags: 
+    - event
+  summary: "イベントに参加意思表示をする"
+  description: "ログインユーザがイベントに参加意思表示をする"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            eventId:
+              description: イベントId
+              type: number
+              example: 2
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    422:
+      description: すでに参加済みである
+      content:
+        application/json:
+          example:
+            status: 422
+            message: already joined
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
+delete:
+  security:
+    - Bearer: []
+  tags: 
+    - event
+  summary: "イベントへの参加意思を取り消す"
+  description: "ログインユーザのイベントへの参加意思を取り消す"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            eventId:
+              description: イベントId
+              type: number
+              example: 2
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
