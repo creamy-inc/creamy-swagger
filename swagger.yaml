@@ -1396,6 +1396,10 @@ components:
           description: イベント詳細説明
           type: string
           example: ''
+        memberCount:
+          description: イベントに参加意思表示している人数
+          type: number
+          example: 1
         date:
           description: イベント日時
           type: number
@@ -1443,6 +1447,11 @@ components:
               description: ステータスアイコン
               type: number
               example: 1
+        users:
+          description: 参加意思表示をしているユーザー
+          type: array
+          items:
+            $ref: '#/components/schemas/AppUser'
     EventPlace:
       description: イベントの場所情報
       type: object
