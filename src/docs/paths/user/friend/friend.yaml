@@ -5,6 +5,16 @@ get:
     - user
   summary: "フレンド一覧を取得"
   description: "ログインユーザーのフレンド一覧を取得"
+  parameters:
+    - name: "page"
+      in: query
+      description: ページ
+      type: number
+      example: 1
+    - name: "pageSize"
+      in: query
+      description: ページサイズ(10<pageSize<100)
+      example: 100
   responses:
     200:
       content:

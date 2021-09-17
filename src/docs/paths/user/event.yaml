@@ -1,0 +1,21 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - user
+  summary: "ユーザの参加可能な近日開催予定のイベントを取得する"
+  description: "ユーザの参加可能な近日開催予定のイベントを取得する"
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/UserEvent"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

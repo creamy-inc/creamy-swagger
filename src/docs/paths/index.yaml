@@ -23,6 +23,9 @@
 /user/active:
   $ref: "./user/active.yaml"
 
+/user/event:
+  $ref: "./user/event.yaml"
+
 # master マスター
 /status:
   $ref: "./master/status.yaml"
