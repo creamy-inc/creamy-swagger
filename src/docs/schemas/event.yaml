@@ -20,6 +20,10 @@ properties:
     description: イベントに参加意思表示している人数
     type: number
     example: 1
+  isJoin:
+    description: 自身がイベントに参加意思表示をしているか
+    type: number
+    example: true
   date:
     description: イベント日時
     type: number
