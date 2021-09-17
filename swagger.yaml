@@ -1677,6 +1677,10 @@ components:
                 description: 回答アイコン
                 type: number
                 example: 58478
+              memberCount:
+                description: 回答しいる人数
+                type: number
+                example: 1
               users:
                 description: 回答しているユーザー
                 type: array
