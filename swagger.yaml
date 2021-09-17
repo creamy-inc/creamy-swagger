@@ -757,8 +757,58 @@ paths:
                   example: 123456789
                 placeId:
                   description: 場所ID
-                  type: number
+                  type: string
+                  example: abcd1234
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - event
+      summary: イベントの情報変更
+      description: グループのイベント情報変更
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                eventId:
+                  description: イベントID
+                  required: true
                   example: 1
+                eventName:
+                  description: イベント名
+                  required: true
+                  type: string
+                  example: 暇な人集合
+                eventImage:
+                  description: イベント画像URL
+                  required: true
+                  type: string
+                  example: 'https://creamy-app.com/image.png'
+                eventDescription:
+                  description: イベントの詳細説明
+                  required: true
+                  type: string
+                  example: 暇な人が集まるイベントです
+                date:
+                  description: イベント日時
+                  type: number
+                  example: 123456789
+                placeId:
+                  description: 場所ID
+                  type: string
+                  example: abcd1234
       responses:
         '200':
           $ref: '#/components/responses/200'
