@@ -1409,6 +1409,10 @@ components:
           description: ルームの人数
           type: number
           example: 4
+        activeCount:
+          description: アクティブ状態のユーザ数
+          type: number
+          example: 2
         ownerUid:
           description: オーナーID
           type: string
