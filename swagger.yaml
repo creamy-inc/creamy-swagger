@@ -209,6 +209,16 @@ paths:
         - user
       summary: フレンド一覧を取得
       description: ログインユーザーのフレンド一覧を取得
+      parameters:
+        - name: page
+          in: query
+          description: ページ
+          type: number
+          example: 1
+        - name: pageSize
+          in: query
+          description: ページサイズ(10<pageSize<100)
+          example: 100
       responses:
         '200':
           content:
@@ -397,6 +407,28 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+  /user/event:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - user
+      summary: ユーザの参加可能な近日開催予定のイベントを取得する
+      description: ユーザの参加可能な近日開催予定のイベントを取得する
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserEvent'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
   /status:
     get:
       tags:
@@ -538,6 +570,15 @@ paths:
           required: true
           type: number
           example: 1
+        - name: page
+          in: query
+          description: ページ
+          type: number
+          example: 1
+        - name: pageSize
+          in: query
+          description: ページサイズ(10<pageSize<100)
+          example: 100
       responses:
         '200':
           content:
@@ -1690,6 +1731,40 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/AppUser'
+    UserEvent:
+      description: 近日開催の参加可能なイベント
+      type: object
+      properties:
+        groupId:
+          description: グループID
+          type: number
+          example: 1
+        groupName:
+          description: グループ名
+          type: string
+          example: 暇な人集まれ！
+        groupImage:
+          description: グループ画像URL
+          type: string
+          example: 'https://creamy-app.com/image.png'
+        groupDescription:
+          description: グループの詳細説明
+          type: string
+          example: 暇な人が集まるグループです
+        memberCount:
+          description: ルームの人数
+          type: number
+          example: 4
+        activeCount:
+          description: アクティブ状態のユーザ数
+          type: number
+          example: 2
+        ownerUid:
+          description: オーナーID
+          type: string
+          example: xWDG67WKXjROfE22eMEOd7rvYU12
+        event:
+          $ref: '#/components/schemas/Event'
     Error:
       description: エラー
       type: object
