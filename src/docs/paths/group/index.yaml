@@ -4,7 +4,7 @@ get:
   tags:
     - group
   summary: "グループ一覧を取得"
-  description: "ユーザーが所属するグループ一覧を取得する"
+  description: "ユーザーが所属，招待されているグループ一覧を取得する"
   responses:
     200:
       content:
