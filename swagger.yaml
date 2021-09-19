@@ -413,6 +413,16 @@ paths:
         - user
       summary: ユーザの参加可能な近日開催予定のイベントを取得する
       description: ユーザの参加可能な近日開催予定のイベントを取得する
+      parameters:
+        - name: page
+          in: query
+          description: ページ
+          type: number
+          example: 1
+        - name: pageSize
+          in: query
+          description: ページサイズ(10<pageSize<100)
+          example: 100
       responses:
         '200':
           content:
