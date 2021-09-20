@@ -1515,7 +1515,7 @@ components:
           description: イベント日時
           type: number
           example: 123456789
-        placeInfo:
+        place:
           type: object
           properties:
             placeId:
