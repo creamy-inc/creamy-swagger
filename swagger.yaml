@@ -1025,8 +1025,8 @@ paths:
                   description: 写真URL
                   type: number
                   example: ''
-                statusId:
-                  description: ステータスID
+                eventId:
+                  description: イベントID
                   type: number
                   example: 1
       responses:
