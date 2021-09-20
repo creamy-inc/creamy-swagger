@@ -437,12 +437,30 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
-  /status:
+  /wish:
     get:
       tags:
         - master
-      summary: ステータス一覧を取得
-      description: ステータス一覧を取得します
+      summary: wish一覧を取得
+      description: wish一覧を取得します
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Wish'
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  /answer:
+    get:
+      tags:
+        - master
+      summary: 回答一覧を取得
+      description: スケジュールアンケートの回答一覧を取得します
       responses:
         '200':
           content:
@@ -455,7 +473,7 @@ paths:
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
-  /answer:
+  /status:
     get:
       tags:
         - master
@@ -1003,34 +1021,10 @@ paths:
                   description: 場所Id
                   'true': string
                   example: ijkl9012
-                placeName:
-                  description: 場所名
-                  type: string
+                photo:
+                  description: 写真URL
+                  type: number
                   example: ''
-                address:
-                  description: 住所
-                  type: string
-                  example: ''
-                latitude:
-                  description: 緯度
-                  type: number
-                  example: 1
-                longitude:
-                  description: 経度
-                  type: number
-                  example: 1
-                rate:
-                  description: 評価
-                  type: number
-                  example: 1
-                price:
-                  description: 価格帯
-                  type: number
-                  example: 1
-                eventId:
-                  description: イベントID
-                  type: number
-                  example: 1
                 statusId:
                   description: ステータスID
                   type: number
@@ -1157,6 +1151,12 @@ paths:
         - name: eventId
           in: query
           description: イベントID
+          required: true
+          type: number
+          example: 1
+        - name: wishId
+          in: query
+          description: wishID
           required: true
           type: number
           example: 1
@@ -1330,18 +1330,14 @@ components:
           description: ステータスID
           type: number
           example: 2
-        statusName:
-          description: ステータス名
+        statusIcon:
+          description: ステータスアイコン
           type: string
-          example: 食事
+          example: "\U0001F642"
         statusUpdated:
           description: ステータス更新日
           type: number
           example: 123456789
-        statusIcon:
-          description: ステータスアイコン
-          type: number
-          example: 61816
         latitude:
           description: 緯度
           type: number
@@ -1422,22 +1418,54 @@ components:
           description: 削除日
           type: string
           example: null
+    Wish:
+      description: ウィッシュ
+      type: object
+      properties:
+        parentWish:
+          type: object
+          properties:
+            wishId:
+              description: wishID
+              type: number
+              example: 2
+            wishName:
+              description: wish名
+              type: string
+              example: 食事
+            wishIcon:
+              description: wishアイコン
+              type: string
+              example: "\U0001F37D"
+        childWish:
+          type: array
+          items:
+            type: object
+            properties:
+              wishId:
+                description: wishID
+                type: number
+                example: 5
+              wishName:
+                description: wish名
+                type: string
+                example: パン
+              wishIcon:
+                description: wishアイコン
+                type: string
+                example: "\U0001F35E"
     Status:
       description: ステータス
       type: object
       properties:
-        id:
+        statusId:
           description: ステータスID
           type: number
           example: 2
-        statusName:
+        statusIcon:
           description: ステータス名
           type: string
-          example: 食事
-        statusIcon:
-          description: ステータスアイコン
-          type: number
-          example: 61816
+          example: "\U0001F600"
     Group:
       description: グループ
       type: object
@@ -1546,18 +1574,10 @@ components:
               description: 価格帯
               type: number
               example: 3
-            statusId:
-              description: ステータスID
-              type: number
-              example: 1
-            statusName:
-              description: ステータス名
+            photo:
+              description: 写真URL
               type: string
               example: ''
-            statusIcon:
-              description: ステータスアイコン
-              type: number
-              example: 1
         users:
           description: 参加意思表示をしているユーザー
           type: array
@@ -1611,6 +1631,10 @@ components:
           description: ファボしている人数
           type: number
           example: 2
+        photo:
+          description: 写真URL
+          type: string
+          example: ''
         isFavo:
           description: ファボしているかどうか
           type: boolean
@@ -1676,18 +1700,22 @@ components:
               description: 閉店しているか
               type: bool
               example: false
-        statusId:
-          description: ステータスID
+        photo:
+          description: 画像参照
+          type: string
+          example: ''
+        wishId:
+          description: wishID
           type: number
           example: 2
-        statusName:
-          description: ステータス名
+        wishName:
+          description: wish名
           type: string
           example: 食事
-        statusIcon:
-          description: ステータスアイコン
-          type: number
-          example: 61816
+        wishIcon:
+          description: wishアイコン
+          type: string
+          example: "\U0001F37D"
     Answer:
       description: 回答
       type: object
