@@ -12,6 +12,12 @@ get:
       required: true
       type: number
       example: 1
+    - name: "wishId"
+      in: query
+      description: "wishID"
+      required: true
+      type: number
+      example: 1
   responses:
     200:
       content:

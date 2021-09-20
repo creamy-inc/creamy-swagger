@@ -1,8 +1,8 @@
 get:
   tags:
     - master
-  summary: "ステータス一覧を取得"
-  description: "ステータス一覧を取得します"
+  summary: "wish一覧を取得"
+  description: "wish一覧を取得します"
   responses:
     200:
       content:
@@ -10,7 +10,7 @@ get:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/Status"
+              $ref: "#/components/schemas/Wish"
     400:
       $ref: "#/components/responses/400"
     500:

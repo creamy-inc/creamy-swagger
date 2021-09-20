@@ -52,16 +52,20 @@ properties:
         description: 閉店しているか
         type: bool
         example: false
-  statusId:
-    description: ステータスID
-    type: number
-    example: 2
-  statusName:
-    description: ステータス名
+  photo:
+    description: 画像参照
+    type: string
+    example: ""
+  wishId:
+        description: wishID
+        type: number
+        example: 2
+  wishName:
+    description: wish名
     type: string
     example: "食事"
-  statusIcon:
-    description: ステータスアイコン
-    type: number
-    example: 61816
+  wishIcon:
+    description: wishアイコン
+    type: string
+    example: "🍽"
 

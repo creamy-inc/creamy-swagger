@@ -27,11 +27,14 @@
   $ref: "./user/event.yaml"
 
 # master マスター
-/status:
-  $ref: "./master/status.yaml"
+/wish:
+  $ref: "./master/wish.yaml"
 
 /answer:
   $ref: "./master/answer.yaml"
+
+/status:
+  $ref: "./master/status.yaml"
 
 # group
 /group:

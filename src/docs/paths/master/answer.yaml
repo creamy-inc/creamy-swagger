@@ -1,8 +1,8 @@
 get:
   tags:
     - master
-  summary: "ステータス一覧を取得"
-  description: "ステータス一覧を取得します"
+  summary: "回答一覧を取得"
+  description: "スケジュールアンケートの回答一覧を取得します"
   responses:
     200:
       content:

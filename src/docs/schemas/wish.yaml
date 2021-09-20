@@ -1,0 +1,34 @@
+type: object
+properties:
+  parentWish:
+    type: object
+    properties:
+      wishId:
+        description: wishID
+        type: number
+        example: 2
+      wishName:
+        description: wish名
+        type: string
+        example: "食事"
+      wishIcon:
+        description: wishアイコン
+        type: string
+        example: "🍽"
+  childWish:
+    type: array
+    items:
+      type: object
+      properties:
+        wishId:
+          description: wishID
+          type: number
+          example: 5
+        wishName:
+          description: wish名
+          type: string
+          example: "パン"
+        wishIcon:
+          description: wishアイコン
+          type: string
+          example: "🍞"

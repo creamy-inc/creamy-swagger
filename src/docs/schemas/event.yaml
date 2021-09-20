@@ -59,18 +59,10 @@ properties:
         description: 価格帯
         type: number
         example: 3
-      statusId:
-        description: ステータスID
-        type: number
-        example: 1
-      statusName:
-        description: ステータス名
+      photo:
+        description: 写真URL
         type: string
         example: ""
-      statusIcon:
-        description: ステータスアイコン
-        type: number
-        example: 1
   users:
     description: 参加意思表示をしているユーザー
     type: array

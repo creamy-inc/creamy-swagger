@@ -45,6 +45,10 @@ properties:
     description: ファボしている人数
     type: number
     example: 2
+  photo:
+    description: 写真URL
+    type: string
+    example: ""
   isFavo:
     description: ファボしているかどうか
     type: boolean

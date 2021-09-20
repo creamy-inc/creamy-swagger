@@ -1,15 +1,10 @@
-# Status
 type: object
 properties:
-  id:
+  statusId:
     description: ステータスID
     type: number
     example: 2
-  statusName:
+  statusIcon:
     description: ステータス名
     type: string
-    example: "食事"
-  statusIcon:
-    description: ステータスアイコン
-    type: number
-    example: 61816
+    example: "😀"

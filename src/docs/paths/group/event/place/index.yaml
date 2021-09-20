@@ -45,34 +45,10 @@ post:
               description: 場所Id
               true: string
               example: ijkl9012
-            placeName:
-              description: 場所名
-              type: string
+            photo:
+              description: 写真URL
+              type: number
               example: ""
-            address:
-              description: 住所
-              type: string
-              example: ""
-            latitude:
-              description: 緯度
-              type: number
-              example: 1
-            longitude:
-              description: 経度
-              type: number
-              example: 1
-            rate:
-              description: 評価
-              type: number
-              example: 1
-            price:
-              description: 価格帯
-              type: number
-              example: 1
-            eventId:
-              description: イベントID
-              type: number
-              example: 1
             statusId:
               description: ステータスID
               type: number
