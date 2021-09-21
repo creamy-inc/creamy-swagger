@@ -6,9 +6,9 @@ info:
   title: "creamy API"
 
 servers:
-  - url: https://creamy-app.com/api/v1
+  - url: https://creamy-app.com/api/
     description: "Staging Server"
-  - url: https://creamy-app.com/api/v2
+  - url: https://creamy-app.com/api/dev
     description: "Develop Server"
   - url: http://localhost:8080
     description: "Development Server"
