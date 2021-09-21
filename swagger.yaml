@@ -1021,10 +1021,10 @@ paths:
                   description: 場所Id
                   'true': string
                   example: ijkl9012
-                photo:
-                  description: 写真URL
+                wishId:
+                  description: ウィッシュId
                   type: number
-                  example: ''
+                  example: 1
                 eventId:
                   description: イベントID
                   type: number
