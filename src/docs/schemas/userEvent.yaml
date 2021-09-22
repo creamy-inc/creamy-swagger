@@ -1,33 +1,7 @@
 type: object
 properties:
-  groupId:
-    description: グループID
-    type: number
-    example: 1
-  groupName:
-    description: グループ名
-    type: string
-    example: "暇な人集まれ！"
-  groupImage:
-    description: グループ画像URL
-    type: string
-    example: "https://creamy-app.com/image.png"
-  groupDescription:
-    description: グループの詳細説明
-    type: string
-    example: "暇な人が集まるグループです"
-  memberCount:
-    description: ルームの人数
-    type: number
-    example: 4
-  activeCount:
-    description: アクティブ状態のユーザ数
-    type: number
-    example: 2
-  ownerUid:
-    description: オーナーID
-    type: string
-    example: "xWDG67WKXjROfE22eMEOd7rvYU12"
+  group:
+    $ref: "#/components/schemas/Group"
   event:
     $ref: "#/components/schemas/Event"  
   
