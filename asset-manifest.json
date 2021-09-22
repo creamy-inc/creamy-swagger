@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/creamy-swagger/static/js/main.5bc935e8.chunk.js",
-    "main.js.map": "/creamy-swagger/static/js/main.5bc935e8.chunk.js.map",
-    "runtime-main.js": "/creamy-swagger/static/js/runtime-main.1e2959b5.js",
-    "runtime-main.js.map": "/creamy-swagger/static/js/runtime-main.1e2959b5.js.map",
+    "main.js": "/creamy-swagger/static/js/main.cf7a81d3.chunk.js",
+    "main.js.map": "/creamy-swagger/static/js/main.cf7a81d3.chunk.js.map",
+    "runtime-main.js": "/creamy-swagger/static/js/runtime-main.1adc2aa6.js",
+    "runtime-main.js.map": "/creamy-swagger/static/js/runtime-main.1adc2aa6.js.map",
     "static/css/2.99ec94ce.chunk.css": "/creamy-swagger/static/css/2.99ec94ce.chunk.css",
-    "static/js/2.f465153e.chunk.js": "/creamy-swagger/static/js/2.f465153e.chunk.js",
-    "static/js/2.f465153e.chunk.js.map": "/creamy-swagger/static/js/2.f465153e.chunk.js.map",
+    "static/js/2.29ed7281.chunk.js": "/creamy-swagger/static/js/2.29ed7281.chunk.js",
+    "static/js/2.29ed7281.chunk.js.map": "/creamy-swagger/static/js/2.29ed7281.chunk.js.map",
     "index.html": "/creamy-swagger/index.html",
     "static/css/2.99ec94ce.chunk.css.map": "/creamy-swagger/static/css/2.99ec94ce.chunk.css.map",
-    "static/js/2.f465153e.chunk.js.LICENSE.txt": "/creamy-swagger/static/js/2.f465153e.chunk.js.LICENSE.txt"
+    "static/js/2.29ed7281.chunk.js.LICENSE.txt": "/creamy-swagger/static/js/2.29ed7281.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.1e2959b5.js",
+    "static/js/runtime-main.1adc2aa6.js",
     "static/css/2.99ec94ce.chunk.css",
-    "static/js/2.f465153e.chunk.js",
-    "static/js/main.5bc935e8.chunk.js"
+    "static/js/2.29ed7281.chunk.js",
+    "static/js/main.cf7a81d3.chunk.js"
   ]
 }
