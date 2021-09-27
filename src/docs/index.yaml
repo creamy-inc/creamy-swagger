@@ -8,8 +8,6 @@ info:
 servers:
   - url: https://creamy-app.com/api/
     description: "Staging Server"
-  - url: https://creamy-app.com/api/dev
-    description: "Develop Server"
   - url: http://localhost:8080
     description: "Development Server"
 
