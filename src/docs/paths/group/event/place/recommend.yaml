@@ -6,18 +6,28 @@ get:
   tags:
     - place
   parameters:
-    - name: "eventId"
-      in: query
-      description: "イベントID"
-      required: true
-      type: number
-      example: 1
     - name: "wishId"
       in: query
       description: "wishID"
       required: true
       type: number
       example: 1
+    - name: "eventId"
+      in: query
+      description: "イベントID"
+      required: true
+      type: number
+      example: 1
+    - name: "latitude"
+      in: query
+      description: "緯度"
+      type: number
+      example: 33.5900179
+    - name: "longitude"
+      in: query
+      description: "経度"
+      type: number
+      example: 130.3988205
   responses:
     200:
       content:
