@@ -1,0 +1,27 @@
+get:
+  security:
+    - Bearer: []
+  tags:
+    - group
+  summary: "グループ内のユーザの中心を取得"
+  description: "グループ内のユーザーの中心の緯度経度を取得する"
+  parameters:
+    - name: "groupId"
+      in: query
+      description: "グループID"
+      required: true
+      type: number
+      example: 1
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/LatLng"
+            
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

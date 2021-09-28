@@ -1,0 +1,10 @@
+type: object
+properties:
+  latitude:
+    description: 緯度
+    type: number
+    example: 33.5900179
+  longitude:
+    description: 経度
+    type: number
+    example: 130.3988205

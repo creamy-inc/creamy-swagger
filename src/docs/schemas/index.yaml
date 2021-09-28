@@ -53,3 +53,7 @@ UserEvent:
 Error:
   description: エラー
   $ref: "./error.yaml"
+
+LatLng:
+  description: 位置情報
+  $ref: "./latlng.yaml"

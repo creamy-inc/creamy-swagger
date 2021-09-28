@@ -46,6 +46,9 @@
 /group/user:
   $ref: "./group/user.yaml"
 
+/group/center:
+  $ref: "./group/center.yaml"
+
 /group/event:
   $ref: "./group/event/index.yaml"
 
