@@ -937,6 +937,47 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+  /group/event/memory:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - event
+      summary: 過去のイベント一覧を取得
+      description: グループの過去のイベント一覧を取得する
+      parameters:
+        - name: groupId
+          in: query
+          description: グループID
+          required: true
+          type: number
+          example: 1
+        - name: start
+          in: query
+          description: 開始日時
+          required: true
+          type: number
+          example: 1630422000000
+        - name: end
+          in: query
+          description: 終了日時
+          required: true
+          type: number
+          example: 1632927600000
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
   /group/event/user:
     post:
       security:
