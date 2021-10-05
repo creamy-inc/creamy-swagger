@@ -62,6 +62,47 @@ post:
     500:
       $ref: "#/components/responses/500"
 
+patch:
+  security:
+    - Bearer: []
+  tags:
+    - group
+  summary: "グループ情報変更"
+  description: "グループ情報変更"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            groupId:
+              description: グループId
+              type: number
+              example: 1
+            groupName:
+              description: ルーム名
+              type: string
+              example: "暇な人集合"
+            groupImage:
+              description: グループ画像URL
+              type: string
+              example: "https://creamy-app.com/image.png"
+            groupDescription:
+              description: グループの詳細説明
+              type: string
+              example: "暇な人が集まるグループです"
+
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"
+
 delete:
   security:
     - Bearer: []

@@ -1,0 +1,14 @@
+type: object
+properties:
+  id:
+    description: レビューID
+    type: number
+    example: 1
+  reviewName:
+    description: レビュー名
+    type: string
+    example: "良い"
+  reviewIcon:
+    description: レビューアイコン
+    type: string
+    example: "😍"

@@ -28,41 +28,44 @@ properties:
     description: イベント日時
     type: number
     example: 123456789
-  place:
-    type: object
-    properties:
-      placeId:
-        description: 場所ID
-        type: number
-        example: 1
-      placeName:
-        description: 場所名
-        type: string
-        example: "どんぶり居酒屋 喜水丸〜天神店〜"
-      address:
-        description: 住所
-        type: string
-        example: "福岡市中央区天神２丁目１１−３"
-      latitude:
-        description: 緯度
-        type: number
-        example: 33.5900179
-      longitude:
-        description: 経度
-        type: number
-        example: 130.3988205
-      rate:
-        description: 評価
-        type: number
-        example: 3.8
-      price:
-        description: 価格帯
-        type: number
-        example: 3
-      photo:
-        description: 写真URL
-        type: string
-        example: ""
+  places:
+    type: array
+    items:
+      type: object
+      properties:
+        placeId:
+          description: 場所ID
+          type: number
+          example: 1
+        placeName:
+          description: 場所名
+          type: string
+          example: "どんぶり居酒屋 喜水丸〜天神店〜"
+        address:
+          description: 住所
+          type: string
+          example: "福岡市中央区天神２丁目１１−３"
+        latitude:
+          description: 緯度
+          type: number
+          example: 33.5900179
+        longitude:
+          description: 経度
+          type: number
+          example: 130.3988205
+        wishId:
+          description: wishID
+          type: number
+          example: 5
+        wishName:
+          description: wish名
+          type: string
+          example: "パン"
+        wishIcon:
+          description: wishアイコン
+          type: string
+          example: "🍞"
+
   users:
     description: 参加意思表示をしているユーザー
     type: array

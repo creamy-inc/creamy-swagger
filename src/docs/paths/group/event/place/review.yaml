@@ -1,0 +1,39 @@
+post:
+  security:
+    - Bearer: []
+  tags:
+    - place
+  summary: "イベントの開催場所を評価する"
+  description: "イベントの開催場所に関する評価を行う"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            eventDetermineId:
+              description: イベント決定ID
+              type: number
+              example: 1
+            reviewId:
+              description: レビューID
+              type: number
+              example: 1
+            price:
+              description: 金額
+              type: number
+              example: 5000
+            comment:
+              description: コメント
+              type: string
+              example: 美味しかった！
+  responses:
+    200:
+      $ref: "#/components/responses/200"
+    400:
+      $ref: "#/components/responses/400"
+    401:
+      $ref: "#/components/responses/401"
+    500:
+      $ref: "#/components/responses/500"

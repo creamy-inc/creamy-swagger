@@ -36,6 +36,9 @@
 /status:
   $ref: "./master/status.yaml"
 
+/review:
+  $ref: "./master/review.yaml"
+
 # group
 /group:
   $ref: "./group/index.yaml"
@@ -49,6 +52,7 @@
 /group/center:
   $ref: "./group/center.yaml"
 
+# event
 /group/event:
   $ref: "./group/event/index.yaml"
 
@@ -58,6 +62,7 @@
 /group/event/user:
   $ref: "./group/event/user.yaml"
 
+# place
 /group/event/place:
   $ref: "./group/event/place/index.yaml"
 
@@ -67,8 +72,18 @@
 /group/event/place/recommend:
   $ref: "./group/event/place/recommend.yaml"
 
+/group/event/place/review:
+  $ref: "./group/event/place/review.yaml"
+
+/group/event/place/decision:
+  $ref: "./group/event/place/decision.yaml"
+
+# schedule
 /group/event/schedule:
   $ref: "./group/event/schedule/index.yaml"
 
 /group/event/schedule/answer:
   $ref: "./group/event/schedule/answer.yaml"
+
+/group/event/schedule/decision:
+  $ref: "./group/event/schedule/decision.yaml"

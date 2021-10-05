@@ -1,8 +1,8 @@
 get:
   tags:
     - master
-  summary: "回答一覧を取得"
-  description: "スケジュールアンケートの回答一覧を取得します"
+  summary: "レビュー一覧を取得"
+  description: "レビューの回答一覧を取得します"
   responses:
     200:
       content:
@@ -10,7 +10,7 @@ get:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/Answer"
+              $ref: "#/components/schemas/Review"
     400:
       $ref: "#/components/responses/400"
     500:

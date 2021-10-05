@@ -46,6 +46,11 @@ UserEvent:
   description: 近日開催の参加可能なイベント
   $ref: "./userEvent.yaml"
 
+Review:
+  description: レビュー回答
+  $ref: "./review.yaml" 
+
+
 # Questionnaire:
 #   description: アンケート
 #   $ref: "./questionnaire.yaml"
