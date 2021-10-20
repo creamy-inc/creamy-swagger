@@ -6,7 +6,7 @@ info:
 servers:
   - url: 'https://creamy-app.com/api/'
     description: Staging Server
-  - url: 'http://localhost:8080'
+  - url: 'https://ik1-220-80341.vs.sakura.ne.jp/'
     description: Development Server
 tags:
   - name: user
