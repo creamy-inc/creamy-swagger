@@ -8,6 +8,8 @@ servers:
     description: Staging Server
   - url: 'https://ik1-220-80341.vs.sakura.ne.jp/'
     description: Development Server
+  - url: 'http://localhost:8080/'
+    description: Local Server
 tags:
   - name: user
     description: Operations about user
@@ -612,6 +614,33 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  '/group/{groupId}':
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - group
+      summary: グループ情報を取得
+      description: groupIdのグループ情報を取得する
+      parameters:
+        - name: groupId
+          in: query
+          description: グループID
+          required: true
+          type: number
+          example: 1
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
         '400':
           $ref: '#/components/responses/400'
         '401':
