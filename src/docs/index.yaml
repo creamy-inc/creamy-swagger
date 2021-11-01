@@ -10,6 +10,8 @@ servers:
     description: "Staging Server"
   - url: https://ik1-220-80341.vs.sakura.ne.jp/
     description: "Development Server"
+  - url: http://localhost:8080/
+    description: "Local Server"
 
 tags:
   - name: "user"

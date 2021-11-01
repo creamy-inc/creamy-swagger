@@ -40,6 +40,9 @@
 /group:
   $ref: "./group/index.yaml"
 
+/group/{groupId}:
+  $ref: "./group/groupId.yaml"
+
 /group/invite:
   $ref: "./group/invite.yaml"
 
